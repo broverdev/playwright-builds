@@ -1,0 +1,10 @@
+{
+  "name": "playwright-versions-parser",
+  "type": "module",
+  "scripts": {
+    "start": "node ./index.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^25"
+  }
+}

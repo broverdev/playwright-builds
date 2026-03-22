@@ -1,4 +1,4 @@
-import fs from 'node:fs/promises';
+import fs from "node:fs/promises";
 
 const npmRegistryUrl = "https://registry.npmjs.org/playwright";
 
@@ -21,16 +21,16 @@ async function fetchData(): Promise<void> {
     const data: any = await resp.json();
     const timeMetadata = data.time;
 
-    const versionKeys = Object.keys(data.versions)
-      .filter((v) => !v.includes("-"))
-      .reverse();
+    const versionKeys = Object.keys(data.versions).reverse();
 
     const results: VersionData[] = [];
     console.log(`📦 [2/4] Найдено ${versionKeys.length} версий.`);
 
     for (const [index, ver] of versionKeys.entries()) {
       if (index % 10 === 0 || index < 3) {
-        console.log(`   🔹 Обработка v${ver} (${index + 1}/${versionKeys.length})...`);
+        console.log(
+          `   🔹 Обработка v${ver} (${index + 1}/${versionKeys.length})...`,
+        );
       }
 
       const date = timeMetadata[ver] ? timeMetadata[ver].split("T")[0] : "";
@@ -42,7 +42,9 @@ async function fetchData(): Promise<void> {
       };
 
       try {
-        const bResp = await fetch(`https://cdn.jsdelivr.net/npm/playwright-core@${ver}/browsers.json`);
+        const bResp = await fetch(
+          `https://cdn.jsdelivr.net/npm/playwright-core@${ver}/browsers.json`,
+        );
         if (bResp.ok) {
           const bData = await bResp.json();
           bData.browsers.forEach((b: any) => {
@@ -61,14 +63,17 @@ async function fetchData(): Promise<void> {
       const formattedBrowsers: Record<string, string> = {};
       for (const key in rawBrowsers) {
         const { v, rev } = rawBrowsers[key];
-        formattedBrowsers[key] = v && rev ? `${v} (${rev})` : (rev || v || "");
+        formattedBrowsers[key] = v && rev ? `${v} (${rev})` : rev || v || "";
       }
 
       results.push({ ver, browsers: formattedBrowsers, date, links });
     }
 
     console.log("💾 [3/4] Сохраняю playwright_versions.json...");
-    await fs.writeFile("playwright_versions.json", JSON.stringify(results, null, 2));
+    await fs.writeFile(
+      "playwright_versions.json",
+      JSON.stringify(results, null, 2),
+    );
 
     console.log("📝 [4/4] Обновляю README.md...");
     await updateReadme(results);
@@ -80,7 +85,10 @@ async function fetchData(): Promise<void> {
   }
 }
 
-function generateLinks(browsers: Record<string, BrowserInfo>, playwrightVersion: string): Record<string, any> {
+function generateLinks(
+  browsers: Record<string, BrowserInfo>,
+  playwrightVersion: string,
+): Record<string, any> {
   const urls: Record<string, any> = {};
   const host = "https://cdn.playwright.dev";
   const azurePath = "dbazure/download/playwright";
@@ -95,7 +103,8 @@ function generateLinks(browsers: Record<string, BrowserInfo>, playwrightVersion:
     urls[name] = {};
 
     const getCftUrl = (path: string) => `${host}/builds/cft/${bVer}/${path}`;
-    const getRegUrl = (browser: string, archive: string) => `${baseUrlPrefix}/builds/${browser}/${rev}/${archive}`;
+    const getRegUrl = (browser: string, archive: string) =>
+      `${baseUrlPrefix}/builds/${browser}/${rev}/${archive}`;
 
     if (name === "chromium") {
       const chromeMajor = parseInt(bVer.split(".")[0]) || 0;
@@ -110,13 +119,19 @@ function generateLinks(browsers: Record<string, BrowserInfo>, playwrightVersion:
         urls[name].mac = getRegUrl("chromium", "chromium-mac.zip");
       }
     } else if (name === "webkit") {
-      let macName = minor >= 50 ? "mac" : (minor >= 24 ? "mac-12" : "mac");
+      let macName = minor >= 50 ? "mac" : minor >= 24 ? "mac-12" : "mac";
       urls[name].win64 = getRegUrl("webkit", "webkit-win64.zip");
-      urls[name].linux = getRegUrl("webkit", minor >= 56 ? "webkit-ubuntu-24.04.zip" : "webkit-ubuntu-22.04.zip");
+      urls[name].linux = getRegUrl(
+        "webkit",
+        minor >= 56 ? "webkit-ubuntu-24.04.zip" : "webkit-ubuntu-22.04.zip",
+      );
       urls[name].mac = getRegUrl("webkit", `webkit-${macName}.zip`);
     } else if (name === "firefox") {
       urls[name].win64 = getRegUrl("firefox", "firefox-win64.zip");
-      urls[name].linux = getRegUrl("firefox", minor >= 50 ? "firefox-ubuntu-24.04.zip" : "firefox-ubuntu-22.04.zip");
+      urls[name].linux = getRegUrl(
+        "firefox",
+        minor >= 50 ? "firefox-ubuntu-24.04.zip" : "firefox-ubuntu-22.04.zip",
+      );
       urls[name].mac = getRegUrl("firefox", "firefox-mac.zip");
     }
   }
@@ -124,10 +139,14 @@ function generateLinks(browsers: Record<string, BrowserInfo>, playwrightVersion:
 }
 
 async function updateReadme(results: VersionData[]): Promise<void> {
-  const header = "# Playwright Versions History\n\n| PW Ver | Chromium | WebKit | Firefox | Date |\n| :--- | :--- | :--- | :--- | :--- |\n";
-  const rows = results.map(r => 
-    `| **${r.ver}** | ${r.browsers.chromium} | ${r.browsers.webkit} | ${r.browsers.firefox} | ${r.date} |`
-  ).join("\n");
+  const header =
+    "# Playwright Versions History\n\n| PW Ver | Chromium | WebKit | Firefox | Date |\n| :--- | :--- | :--- | :--- | :--- |\n";
+  const rows = results
+    .map(
+      (r) =>
+        `| **${r.ver}** | ${r.browsers.chromium} | ${r.browsers.webkit} | ${r.browsers.firefox} | ${r.date} |`,
+    )
+    .join("\n");
   await fs.writeFile("README.md", header + rows);
 }
 

@@ -1,6 +1,6 @@
 import { test, describe } from "node:test";
 import assert from "node:assert/strict";
-import { getVersionPriority } from "../lib/get-version-priority";
+import { getVersionPriority } from "../lib/get-version-priority.ts";
 
 test("getStabilityScore: should prioritize stable versions over pre-releases", () => {
   assert.equal(getVersionPriority("1.40.0"), 0);

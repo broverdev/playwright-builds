@@ -1,5 +1,5 @@
 import { test } from "node:test";
-import { normalizeVersion } from "../lib/normalize-version";
+import { normalizeVersion } from "../lib/normalize-version.ts";
 import assert from "node:assert/strict";
 
 test("normalizeVersion: should merge identical versions with different revisions", () => {

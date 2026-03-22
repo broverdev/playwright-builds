@@ -1,6 +1,7 @@
 import fs from "node:fs/promises";
 
-const npmRegistryUrl = "https://registry.npmjs.org/playwright";
+const NPM_REGISTRY_URL = "https://registry.npmjs.org/playwright";
+const CONCURRENCY_LIMIT = 20;
 
 interface BrowserInfo {
   v: string;
@@ -15,24 +16,21 @@ interface VersionData {
 }
 
 async function fetchData(): Promise<void> {
-  console.log("🚀 [1/4] Запрашиваю данные из NPM Registry...");
+  console.log("🚀 [1/4] Fetching data from NPM Registry...");
+
   try {
-    const resp = await fetch(npmRegistryUrl);
+    const resp = await fetch(NPM_REGISTRY_URL);
     const data: any = await resp.json();
     const timeMetadata = data.time;
 
     const versionKeys = Object.keys(data.versions).reverse();
 
     const results: VersionData[] = [];
-    console.log(`📦 [2/4] Найдено ${versionKeys.length} версий.`);
+    console.log(
+      `📦 [2/4] Found ${versionKeys.length} versions. Starting parallel processing (limit: ${CONCURRENCY_LIMIT})...`,
+    );
 
-    for (const [index, ver] of versionKeys.entries()) {
-      if (index % 10 === 0 || index < 3) {
-        console.log(
-          `   🔹 Обработка v${ver} (${index + 1}/${versionKeys.length})...`,
-        );
-      }
-
+    const processVersion = async (ver: string): Promise<VersionData> => {
       const date = timeMetadata[ver] ? timeMetadata[ver].split("T")[0] : "";
       const rawBrowsers: Record<string, BrowserInfo> = {
         chromium: { v: "", rev: "" },
@@ -54,33 +52,45 @@ async function fetchData(): Promise<void> {
             }
           });
         }
-      } catch (e: any) {
-        console.error(`   ⚠️ Ошибка v${ver}: ${e.message}`);
-      }
+      } catch (e) {}
 
       const links = generateLinks(rawBrowsers, ver);
-
       const formattedBrowsers: Record<string, string> = {};
+
       for (const key in rawBrowsers) {
         const { v, rev } = rawBrowsers[key];
         formattedBrowsers[key] = v && rev ? `${v} (${rev})` : rev || v || "";
       }
 
-      results.push({ ver, browsers: formattedBrowsers, date, links });
+      return { ver, browsers: formattedBrowsers, date, links };
+    };
+
+    for (let i = 0; i < versionKeys.length; i += CONCURRENCY_LIMIT) {
+      const chunk = versionKeys.slice(i, i + CONCURRENCY_LIMIT);
+      const progress = Math.min(i + CONCURRENCY_LIMIT, versionKeys.length);
+
+      console.log(
+        `   ⚡ Processing chunk ${progress}/${versionKeys.length}...`,
+      );
+
+      const chunkResults = await Promise.all(
+        chunk.map((ver) => processVersion(ver)),
+      );
+      results.push(...chunkResults);
     }
 
-    console.log("💾 [3/4] Сохраняю playwright_versions.json...");
+    console.log("💾 [3/4] Saving playwright_versions.json...");
     await fs.writeFile(
       "playwright_versions.json",
       JSON.stringify(results, null, 2),
     );
 
-    console.log("📝 [4/4] Обновляю README.md...");
+    console.log("📝 [4/4] Updating README.md...");
     await updateReadme(results);
 
-    console.log("✅ Готово!");
+    console.log("✅ Successfully finished!");
   } catch (err: any) {
-    console.error("❌ Критическая ошибка:", err.message);
+    console.error("❌ Critical Error:", err.message);
     process.exit(1);
   }
 }
@@ -88,11 +98,10 @@ async function fetchData(): Promise<void> {
 function generateLinks(
   browsers: Record<string, BrowserInfo>,
   playwrightVersion: string,
-): Record<string, any> {
-  const urls: Record<string, any> = {};
+) {
+  const urls: any = {};
   const host = "https://cdn.playwright.dev";
   const azurePath = "dbazure/download/playwright";
-
   const [major, minor] = (playwrightVersion || "0.0").split(".").map(Number);
   const isLegacyPath = major < 1 || (major === 1 && minor < 40);
   const baseUrlPrefix = isLegacyPath ? host : `${host}/${azurePath}`;
@@ -138,7 +147,7 @@ function generateLinks(
   return urls;
 }
 
-async function updateReadme(results: VersionData[]): Promise<void> {
+async function updateReadme(results: VersionData[]) {
   const header =
     "# Playwright Versions History\n\n| PW Ver | Chromium | WebKit | Firefox | Date |\n| :--- | :--- | :--- | :--- | :--- |\n";
   const rows = results

@@ -142,18 +142,15 @@ async function fetchData(): Promise<void> {
 }
 
 async function updateReadme(results: VersionData[]) {
-  const ARCHIVE_MARKER = "## Browser Archives";
   let readme = "";
 
   try {
     readme = await fs.readFile("README.md", "utf-8");
   } catch {
-    readme = "# Playwright Browser Archive\n\n" + ARCHIVE_MARKER;
+    readme = "# Playwright Builds List\n\n";
   }
 
-  const markerPos = readme.indexOf(ARCHIVE_MARKER);
-  const baseContent =
-    markerPos !== -1 ? readme.slice(0, markerPos).trim() : readme.trim();
+  const baseContent = readme.trim();
 
   const engines: Record<string, Map<string, VersionData>> = {
     chromium: new Map(),
@@ -178,14 +175,14 @@ async function updateReadme(results: VersionData[]) {
     engineKey: string,
   ) => {
     let t = `\n### ${title}\n\n`;
-    t += `| Browser version | Date | Playwright version | Download links |\n`;
-    t += `| :--- | :--- | :--- | :--- |\n`;
+    t += `| ${engineKey.charAt(0).toLocaleUpperCase()}${engineKey.slice(1)}&nbsp;version | Date | Playwright version | Build | Download links |\n`;
+    t += `| :--- | :--- | :--- | :--- | :--- |\n`;
 
     const sortedKeys = Array.from(data.keys()).sort((a, b) =>
       b.localeCompare(a, undefined, { numeric: true }),
     );
 
-    sortedKeys.slice(0, 500).forEach((k) => {
+    sortedKeys.forEach((k) => {
       const info = data.get(k)!;
       const labels: Record<string, string> = {
         win64: "win",
@@ -200,20 +197,20 @@ async function updateReadme(results: VersionData[]) {
             .join(" ")
         : "-";
 
-      t += `| **${info.browsers[engineKey]}** | \`${info.date}\` | ${info.ver} | ${links} |\n`;
+      t += `| **${normalizeVersion(info.browsers[engineKey])}** | ${info.date} | ${info.ver} | ${info.browsers[engineKey].replace(/\)/, "").replace(/.*\(/, "")} | ${links} |\n`;
     });
 
     return t;
   };
 
-  let archiveContent = `\n\n${ARCHIVE_MARKER}\n`;
+  let archiveContent = `\n\n`;
   archiveContent += renderTable(
-    "Chromium Builds",
+    "Chrome (Chromium)",
     engines.chromium,
     "chromium",
   );
-  archiveContent += renderTable("Firefox Builds", engines.firefox, "firefox");
-  archiveContent += renderTable("WebKit Builds", engines.webkit, "webkit");
+  archiveContent += renderTable("Safari (WebKit)", engines.webkit, "webkit");
+  archiveContent += renderTable("Firefox", engines.firefox, "firefox");
 
   await fs.writeFile("README.md", baseContent + "\n" + archiveContent);
 }

@@ -5,7 +5,7 @@ import { normalizeVersion } from "./lib/normalize-version.ts";
 
 const NPM_REGISTRY_URL = "https://registry.npmjs.org/playwright";
 const CONCURRENCY_LIMIT = 200;
-const MIN_VERSION = "1.0.1";
+const MIN_VERSION = "0.0.0";
 
 interface BrowserInfo {
   v: string;
@@ -144,15 +144,16 @@ async function fetchData(): Promise<void> {
 async function updateReadme(results: VersionData[]) {
   const ARCHIVE_MARKER = "## Browser Archives";
   let readme = "";
+
   try {
     readme = await fs.readFile("README.md", "utf-8");
   } catch {
     readme = "# Playwright Browser Archive\n\n" + ARCHIVE_MARKER;
   }
 
-  const markerIndex = readme.indexOf(ARCHIVE_MARKER);
+  const markerPos = readme.indexOf(ARCHIVE_MARKER);
   const baseContent =
-    markerIndex !== -1 ? readme.slice(0, markerIndex).trim() : readme.trim();
+    markerPos !== -1 ? readme.slice(0, markerPos).trim() : readme.trim();
 
   const engines: Record<string, Map<string, VersionData>> = {
     chromium: new Map(),
@@ -160,34 +161,48 @@ async function updateReadme(results: VersionData[]) {
     webkit: new Map(),
   };
 
-  results.forEach((r) => {
-    ["chromium", "firefox", "webkit"].forEach((e) => {
-      const key = r.browsers[e] ? normalizeVersion(r.browsers[e]) : "";
-      if (key && !engines[e].has(key)) engines[e].set(key, r);
+  [...results]
+    .sort((a, b) => b.stabilityScore - a.stabilityScore)
+    .forEach((r) => {
+      ["chromium", "firefox", "webkit"].forEach((e) => {
+        const key = r.browsers[e] ? normalizeVersion(r.browsers[e]) : "";
+        if (key) {
+          engines[e].set(key, r);
+        }
+      });
     });
-  });
 
-  const renderTable = (title: string, data: Map<string, any>, e: string) => {
-    let t = `\n### ${title}\n| Version | Primary PW | Downloads |\n| :--- | :--- | :--- |\n`;
+  const renderTable = (
+    title: string,
+    data: Map<string, VersionData>,
+    engineKey: string,
+  ) => {
+    let t = `\n### ${title}\n\n`;
+    t += `| Browser version | Date | Playwright version | Download links |\n`;
+    t += `| :--- | :--- | :--- | :--- |\n`;
+
     const sortedKeys = Array.from(data.keys()).sort((a, b) =>
       b.localeCompare(a, undefined, { numeric: true }),
     );
 
-    sortedKeys.forEach((k) => {
-      const info = data.get(k);
-      const labels: any = {
+    sortedKeys.slice(0, 500).forEach((k) => {
+      const info = data.get(k)!;
+      const labels: Record<string, string> = {
         win64: "win",
         linux: "linux",
         mac: "mac",
         mac_arm: "arm64",
       };
-      const links = info.links[e]
-        ? Object.entries(info.links[e])
+
+      const links = info.links[engineKey]
+        ? Object.entries(info.links[engineKey])
             .map(([p, u]) => `[${labels[p] || p}](${u})`)
             .join(" ")
         : "-";
-      t += `| **${info.browsers[e]}** | ${info.ver} | ${links} |\n`;
+
+      t += `| **${info.browsers[engineKey]}** | \`${info.date}\` | ${info.ver} | ${links} |\n`;
     });
+
     return t;
   };
 

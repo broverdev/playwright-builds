@@ -2,7 +2,8 @@
   "name": "playwright-versions-parser",
   "type": "module",
   "scripts": {
-    "start": "node ./index.ts"
+    "start": "node ./index.ts",
+    "test": "node --test *.test.ts"
   },
   "devDependencies": {
     "@types/node": "^25"

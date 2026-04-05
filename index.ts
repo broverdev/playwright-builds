@@ -142,15 +142,7 @@ async function fetchData(): Promise<void> {
 }
 
 async function updateReadme(results: VersionData[]) {
-  let readme = "";
-
-  try {
-    readme = await fs.readFile("README.md", "utf-8");
-  } catch {
-    readme = "# Playwright Builds List\n\n";
-  }
-
-  const baseContent = readme.trim();
+  const baseContent = "# Playwright Builds List\n\n";
 
   const engines: Record<string, Map<string, VersionData>> = {
     chromium: new Map(),

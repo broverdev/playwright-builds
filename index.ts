@@ -142,7 +142,11 @@ async function fetchData(): Promise<void> {
 }
 
 async function updateReadme(results: VersionData[]) {
-  const baseContent = "# Playwright Builds List\n\n";
+  const baseContent = `# Playwright Builds
+  
+Daily updated Playwright builds for Chromium, Firefox, and WebKit on Windows, Linux, and macOS.
+
+  `;
 
   const engines: Record<string, Map<string, VersionData>> = {
     chromium: new Map(),
@@ -165,6 +169,7 @@ async function updateReadme(results: VersionData[]) {
     title: string,
     data: Map<string, VersionData>,
     engineKey: string,
+    icon: string,
   ) => {
     const sortedKeys = Array.from(data.keys()).sort((a, b) =>
       b.localeCompare(a, undefined, { numeric: true }),
@@ -203,7 +208,7 @@ async function updateReadme(results: VersionData[]) {
       .join("");
 
     return `
-### ${title}
+## <img src="${icon}" width="24" height="24" alt="" valign="middle"> ${title}
 
 <table>
   <thead>
@@ -220,13 +225,24 @@ async function updateReadme(results: VersionData[]) {
 </table>`;
   };
 
-  const webkitTable = renderTable("Safari (WebKit)", engines.webkit, "webkit");
+  const webkitTable = renderTable(
+    "Safari (WebKit)",
+    engines.webkit,
+    "webkit",
+    "https://github.com/alrra/browser-logos/blob/main/src/safari/safari_48x48.png?raw=true",
+  );
   const chromiumTable = renderTable(
     "Chrome (Chromium)",
     engines.chromium,
     "chromium",
+    "https://github.com/alrra/browser-logos/blob/main/src/chrome/chrome_48x48.png?raw=true",
   );
-  const firefoxTable = renderTable("Firefox", engines.firefox, "firefox");
+  const firefoxTable = renderTable(
+    "Firefox",
+    engines.firefox,
+    "firefox",
+    "https://github.com/alrra/browser-logos/blob/main/src/firefox/firefox_48x48.png?raw=true",
+  );
 
   const finalContent = `${baseContent}
 ${webkitTable}

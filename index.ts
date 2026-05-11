@@ -166,45 +166,74 @@ async function updateReadme(results: VersionData[]) {
     data: Map<string, VersionData>,
     engineKey: string,
   ) => {
-    let t = `\n### ${title}\n\n`;
-    t += `| ${engineKey.charAt(0).toLocaleUpperCase()}${engineKey.slice(1)}&nbsp;version | Date | Playwright version | Build | Download links |\n`;
-    t += `| :--- | :--- | :--- | :--- | :--- |\n`;
-
     const sortedKeys = Array.from(data.keys()).sort((a, b) =>
       b.localeCompare(a, undefined, { numeric: true }),
     );
 
-    sortedKeys.forEach((k) => {
-      const info = data.get(k)!;
-      const labels: Record<string, string> = {
-        win64: "win",
-        linux: "linux",
-        mac: "mac",
-        mac_arm: "arm64",
-      };
+    const rows = sortedKeys
+      .map((k) => {
+        const info = data.get(k)!;
+        const labels: Record<string, string> = {
+          win64: "win",
+          linux: "linux",
+          mac: "mac",
+          mac_arm: "arm64",
+        };
 
-      const links = info.links[engineKey]
-        ? Object.entries(info.links[engineKey])
-            .map(([p, u]) => `[${labels[p] || p}](${u})`)
-            .join(" ")
-        : "-";
+        const links = info.links[engineKey]
+          ? Object.entries(info.links[engineKey])
+              .map(([p, u]) => `<a href="${u}">${labels[p] || p}</a>`)
+              .join("&nbsp;")
+          : "-";
 
-      t += `| **${normalizeVersion(info.browsers[engineKey])}** | ${info.date} | ${info.ver} | ${info.browsers[engineKey].replace(/\)/, "").replace(/.*\(/, "")} | ${links} |\n`;
-    });
+        const engineVer = normalizeVersion(info.browsers[engineKey]);
+        const build = info.browsers[engineKey]
+          .replace(/\)/, "")
+          .replace(/.*\(/, "");
 
-    return t;
+        return `
+    <tr>
+      <td><b>${engineVer}</b></td>
+      <td>${info.date}</td>
+      <td><code>${info.ver}</code></td>
+      <td><code>${build}</code></td>
+      <td>${links}</td>
+    </tr>`;
+      })
+      .join("");
+
+    return `
+### ${title}
+
+<table>
+  <thead>
+    <tr>
+      <th width="332" align="left">${engineKey.charAt(0).toUpperCase()}${engineKey.slice(1)}&nbsp;version</th>
+      <th width="125" align="left">Date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+      <th width="284" align="left">Playwright&nbsp;&nbsp;version&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+      <th width="86" align="left">Build&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+      <th width="185" align="left">Download&nbsp;url&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>${rows}
+  </tbody>
+</table>`;
   };
 
-  let archiveContent = `\n\n`;
-  archiveContent += renderTable(
+  const webkitTable = renderTable("Safari (WebKit)", engines.webkit, "webkit");
+  const chromiumTable = renderTable(
     "Chrome (Chromium)",
     engines.chromium,
     "chromium",
   );
-  archiveContent += renderTable("Safari (WebKit)", engines.webkit, "webkit");
-  archiveContent += renderTable("Firefox", engines.firefox, "firefox");
+  const firefoxTable = renderTable("Firefox", engines.firefox, "firefox");
 
-  await fs.writeFile("README.md", baseContent + "\n" + archiveContent);
+  const finalContent = `${baseContent}
+${webkitTable}
+${chromiumTable}
+${firefoxTable}`;
+
+  await fs.writeFile("README.md", finalContent);
 }
 
 fetchData();

@@ -126,7 +126,7 @@ try {
   );
   const baseContent = `# Playwright Builds
   
-Daily updated Playwright builds for Chromium, Firefox, and WebKit on Windows, Linux, and macOS.
+List of all Playwright builds for Chromium, Firefox, and WebKit on Windows, Linux, and macOS. Updated daily.
 
   `;
 

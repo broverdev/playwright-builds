@@ -1,39 +1,60 @@
-name: Update Playwright Data (TS)
+name: Update Playwright Data
 
 on:
   schedule:
     - cron: "0 0 * * *"
   push:
     branches: [main]
+    paths-ignore:
+      - 'playwright_versions.json'
+      - 'README.md'
   workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    
+    defaults:
+      run:
+        working-directory: ./playwright-updater
+
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
+        with:
+          path: '.'
 
       - name: Setup Node.js 25
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: "25"
+          node-version: 25
           cache: "npm"
-          cache-dependency-path: updater/package-lock.json
+          cache-dependency-path: playwright-updater/package-lock.json
 
       - name: Install dependencies
-        working-directory: ./updater
-        run: npm ci --ignore-scripts
+        run: npm ci --ignore-scripts --prefer-offline
 
-      - name: Run Updater
-        working-directory: ./updater
+      - name: Run playwright-updater
         run: npm start
 
       - name: Commit and Push
+        working-directory: .
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          
           git add .
-          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: auto-update versions [skip ci]" && git push)
+          
+          if ! git diff --cached --quiet; then
+            git commit \
+              --author="Alexander Chabin <alex.chabin@gmail.com>" \
+              -m "Update playwright build list"
+            git push
+          else
+            echo "Data is up to date."
+          fi

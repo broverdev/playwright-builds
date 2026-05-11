@@ -18,17 +18,19 @@ export function generateLinks(browsers: any, playwrightVersion: string) {
     switch (name) {
       case "chromium": {
         const chromeMajor = parseInt(b.v?.split(".")[0]) || 0;
-
         if (chromeMajor >= 115) {
+          const cft = (os: string, arch: string) =>
+            `${host}/builds/cft/${b.v}/${os}-${arch}/chrome-${os}-${arch}.zip`;
+
           urls[name] = {
-            win64: `${host}/builds/cft/${b.v}/win64/chrome-win64.zip`,
-            linux: `${host}/builds/cft/${b.v}/linux64/chrome-linux64.zip`,
-            mac: `${host}/builds/cft/${b.v}/mac-x64/chrome-mac-x64.zip`,
-            mac_arm: `${host}/builds/cft/${b.v}/mac-arm64/chrome-mac-arm64.zip`,
+            win: cft("win64", "win64"),
+            linux: cft("linux64", "linux64"),
+            mac: cft("mac", "x64"),
+            mac_arm: cft("mac", "arm64"),
           };
         } else {
           urls[name] = {
-            win64: getRegUrl("chromium", "chromium-win64.zip"),
+            win: getRegUrl("chromium", "chromium-win64.zip"),
             linux: getRegUrl("chromium", "chromium-linux.zip"),
             mac: getRegUrl("chromium", "chromium-mac.zip"),
           };
@@ -42,9 +44,10 @@ export function generateLinks(browsers: any, playwrightVersion: string) {
           minor >= 56 ? "webkit-ubuntu-24.04.zip" : "webkit-ubuntu-22.04.zip";
 
         urls[name] = {
-          win64: getRegUrl("webkit", "webkit-win64.zip"),
+          win: getRegUrl("webkit", "webkit-win64.zip"),
           linux: getRegUrl("webkit", linuxArchive),
           mac: getRegUrl("webkit", `webkit-${macName}.zip`),
+          mac_arm: getRegUrl("webkit", `webkit-mac-11-arm64.zip`),
         };
         break;
       }
@@ -54,15 +57,13 @@ export function generateLinks(browsers: any, playwrightVersion: string) {
           minor >= 50 ? "firefox-ubuntu-24.04.zip" : "firefox-ubuntu-22.04.zip";
 
         urls[name] = {
-          win64: getRegUrl("firefox", "firefox-win64.zip"),
+          win: getRegUrl("firefox", "firefox-win64.zip"),
           linux: getRegUrl("firefox", linuxArchive),
           mac: getRegUrl("firefox", "firefox-mac.zip"),
+          mac_arm: getRegUrl("firefox", "firefox-mac-11-arm64.zip"),
         };
         break;
       }
-
-      default:
-        break;
     }
   }
 

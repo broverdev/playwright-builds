@@ -177,7 +177,7 @@ async function updateReadme(results: VersionData[]) {
           win64: "win",
           linux: "linux",
           mac: "mac",
-          mac_arm: "arm64",
+          mac_arm: "mac‑arm",
         };
 
         const links = info.links[engineKey]
@@ -208,11 +208,11 @@ async function updateReadme(results: VersionData[]) {
 <table>
   <thead>
     <tr>
-      <th width="332" align="left">${engineKey.charAt(0).toUpperCase()}${engineKey.slice(1)}&nbsp;version</th>
-      <th width="125" align="left">Date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+      <th width="332" align="left">${engineKey.charAt(0).toUpperCase()}${engineKey.slice(1)} version</th>
+      <th width="125" align="left">Date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
       <th width="284" align="left">Playwright&nbsp;&nbsp;version&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-      <th width="86" align="left">Build&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-      <th width="185" align="left">Download&nbsp;url&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+      <th width="86" align="left">Build&nbsp;&nbsp;&nbsp;&nbsp;</th>
+      <th width="185" align="left">Download&nbsp;URL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
     </tr>
   </thead>
   <tbody>${rows}

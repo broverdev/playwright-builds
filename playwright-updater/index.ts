@@ -36,7 +36,7 @@ for (let i = 0; i < versions.length; i += CONCURRENCY_LIMIT) {
 }
 
 await fs.writeFile(
-  "../playwright_versions.json",
+  "../playwright-builds.json",
   JSON.stringify(results, null, 2),
 );
 
@@ -55,25 +55,33 @@ const engines: Record<BrowserName, Map<string, VersionData>> = {
     });
   });
 
-const baseContent = `# Playwright Builds\n\nList of all Playwright builds for Chromium, Firefox, and WebKit on Windows, Linux, and macOS. Updated daily.\n\n`;
+const baseContent = `# Playwright Builds
+
+Auto-updated list of Chromium, Firefox, and Safari (WebKit) binaries for all Playwright versions on Windows, Linux, and macOS.
+
+**[playwright-builds.json](https://raw.githubusercontent.com/broverdev/playwright-builds/refs/heads/main/playwright-builds.json)**
+
+---
+`;
+
 const tables = [
   renderTable(
     "Safari (WebKit)",
     engines.webkit,
     "webkit",
-    "https://github.com/alrra/browser-logos/blob/main/src/safari/safari_48x48.png?raw=true",
+    "https://github.com/alrra/browser-logos/blob/main/src/safari/safari_24x24.png?raw=true",
   ),
   renderTable(
     "Chrome (Chromium)",
     engines.chromium,
     "chromium",
-    "https://github.com/alrra/browser-logos/blob/main/src/chrome/chrome_48x48.png?raw=true",
+    "https://github.com/alrra/browser-logos/blob/main/src/chrome/chrome_24x24.png?raw=true",
   ),
   renderTable(
     "Firefox",
     engines.firefox,
     "firefox",
-    "https://github.com/alrra/browser-logos/blob/main/src/firefox/firefox_48x48.png?raw=true",
+    "https://github.com/alrra/browser-logos/blob/main/src/firefox/firefox_24x24.png?raw=true",
   ),
 ].join("\n");
 

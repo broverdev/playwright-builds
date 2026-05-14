@@ -1,7 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 
-const JSON_PATH = path.join(process.cwd(), "../playwright_versions.json");
+const JSON_PATH = path.join(process.cwd(), "../playwright-builds.json");
 const CONCURRENCY_LIMIT = 50;
 const MAX_RETRIES = 5;
 

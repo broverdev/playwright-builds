@@ -8,7 +8,7 @@ describe("Playwright Crawler Logic", () => {
       const mockBrowsers = {
         chromium: { v: "115.0.5790.24", rev: "1067" },
       };
-      const links = generateLinks(mockBrowsers, "1.35.0");
+      const links = generateLinks(mockBrowsers);
 
       assert.ok(
         links.chromium.win64.includes(
@@ -27,7 +27,7 @@ describe("Playwright Crawler Logic", () => {
         webkit: { v: "15.4", rev: "1000" },
       };
 
-      const links = generateLinks(mockBrowsers, "1.39.0");
+      const links = generateLinks(mockBrowsers);
 
       assert.ok(
         !links.webkit.win64.includes("dbazure"),
@@ -41,7 +41,7 @@ describe("Playwright Crawler Logic", () => {
 
     test("should handle missing revisions gracefully", () => {
       const emptyBrowsers = { chromium: { v: "", rev: "" } };
-      const links = generateLinks(emptyBrowsers, "1.40.0");
+      const links = generateLinks(emptyBrowsers);
       assert.deepEqual(
         links,
         {},

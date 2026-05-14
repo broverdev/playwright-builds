@@ -1,4 +1,4 @@
-import type { VersionData } from "../index.ts";
+import type { VersionData } from "../types/browser-versions.ts";
 import { normalizeVersion } from "./versions.ts";
 
 export function renderTable(
@@ -17,8 +17,8 @@ export function renderTable(
       const engineLinks = info.links[engineKey] || {};
 
       const links = Object.entries(engineLinks)
-        .map(([key, url]) => `<a href="${url}" title="${key}">${key}</a>`)
-        .join("&nbsp; ");
+        .map(([key, url]) => `<a href="${url}">${key}</a>`)
+        .join(" ");
 
       const engineVer = normalizeVersion(info.browsers[engineKey]);
       const build = info.browsers[engineKey]
@@ -44,7 +44,7 @@ export function renderTable(
     <tr>
       <th width="332" align="left">${engineKey.charAt(0).toUpperCase()}${engineKey.slice(1)} version</th>
       <th width="125" align="left">Date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-      <th width="284" align="left">Playwright&nbsp;&nbsp;version&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+      <th width="284" align="left">Playwright&nbsp;version&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
       <th width="86" align="left">Build&nbsp;&nbsp;&nbsp;&nbsp;</th>
       <th width="185" align="left">Download&nbsp;URL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
     </tr>

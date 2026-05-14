@@ -6,174 +6,208 @@ import {
   normalizeVersion,
 } from "./lib/versions.ts";
 import { renderTable } from "./lib/render-table.ts";
+import type { VersionData, BrowserInfo } from "./types/browser-versions.ts";
 
+const BROWSERS = ["chromium", "webkit", "firefox"] as const;
+const MIN_PLAYWRIGHT_VERSION = "0.9.18"; // Ignore old PW versions without browser versions in README.md
 const NPM_REGISTRY_URL = "https://registry.npmjs.org/playwright";
 const CONCURRENCY_LIMIT = 200;
-const MIN_VERSION = "0.0.0";
 
-interface BrowserInfo {
-  v: string;
-  rev: string;
+type BrowserName = (typeof BROWSERS)[number];
+
+console.log("[1/4] Fetching NPM Registry data...");
+const registry = await fetchJson<any>(NPM_REGISTRY_URL);
+if (!registry) throw new Error("Failed to fetch registry");
+
+const versions = Object.keys(registry.versions)
+  .filter((v) => isVersionAtLeast(v, MIN_PLAYWRIGHT_VERSION))
+  .reverse();
+
+console.log(`[2/4] Found ${versions.length} versions. Processing...`);
+const results: VersionData[] = [];
+
+for (let i = 0; i < versions.length; i += CONCURRENCY_LIMIT) {
+  const chunk = versions.slice(i, i + CONCURRENCY_LIMIT);
+  const chunkResults = await Promise.all(
+    chunk.map((v) => processVersion(v, registry.time[v])),
+  );
+  results.push(...chunkResults);
+  console.log(`Progress: ${results.length}/${versions.length}`);
 }
 
-export interface VersionData {
-  ver: string;
-  browsers: Record<string, string>;
-  date: string;
-  links: Record<string, any>;
-  stabilityScore: number;
-}
+await fs.writeFile(
+  "../playwright_versions.json",
+  JSON.stringify(results, null, 2),
+);
 
-console.log("[1/4] Fetching data from NPM Registry...");
-try {
-  const resp = await fetch(NPM_REGISTRY_URL);
-  const data: any = await resp.json();
-  const timeMetadata = data.time;
+const engines: Record<BrowserName, Map<string, VersionData>> = {
+  chromium: new Map(),
+  firefox: new Map(),
+  webkit: new Map(),
+};
 
-  const versionKeys = Object.keys(data.versions)
-    .filter((ver) => isVersionAtLeast(ver, MIN_VERSION))
-    .reverse();
-
-  const results: VersionData[] = [];
-  console.log(
-    `[2/4] Found ${versionKeys.length} versions (>= ${MIN_VERSION}). Processing...`,
-  );
-
-  const processVersion = async (ver: string): Promise<VersionData> => {
-    const date = timeMetadata[ver] ? timeMetadata[ver].split("T")[0] : "";
-    const rawBrowsers: Record<string, BrowserInfo> = {
-      chromium: { v: "", rev: "" },
-      webkit: { v: "", rev: "" },
-      firefox: { v: "", rev: "" },
-    };
-
-    try {
-      const bResp = await fetch(
-        `https://cdn.jsdelivr.net/npm/playwright-core@${ver}/browsers.json`,
-      );
-
-      const setBrowsers = async (bData: any) => {
-        for (const b of bData.browsers) {
-          if (rawBrowsers[b.name]) {
-            rawBrowsers[b.name].v = b.browserVersion || "";
-            rawBrowsers[b.name].rev = b.revision || "";
-
-            if (!b.browserVersion) {
-              const readmeResp = await fetch(
-                `https://cdn.jsdelivr.net/npm/playwright@${ver}/README.md`,
-              );
-
-              if (readmeResp.ok) {
-                const readme = await readmeResp.text();
-
-                const matches = [
-                  ...readme.matchAll(
-                    /^\|?\s*(Chromium|WebKit|Firefox)(?:\s+|<!--.*?-->)+([\d.a-z]+)/gm,
-                  ),
-                ];
-
-                const versionsFromReadme = Object.fromEntries(
-                  matches.map(([, name, v]) => [name.toLowerCase(), v.trim()]),
-                );
-
-                if (versionsFromReadme[b.name]) {
-                  rawBrowsers[b.name].v = versionsFromReadme[b.name];
-                }
-              }
-            }
-          }
-        }
-      };
-      if (bResp.ok) {
-        const bData = await bResp.json();
-        await setBrowsers(bData);
-      } else {
-        const bResp = await fetch(
-          `https://cdn.jsdelivr.net/npm/playwright@${ver}/browsers.json`,
-        );
-        const bData = await bResp.json();
-        await setBrowsers(bData);
-      }
-    } catch (e) {
-      console.log(ver, e);
-    }
-
-    const formattedBrowsers: Record<string, string> = {};
-    for (const [k, v] of Object.entries(rawBrowsers)) {
-      formattedBrowsers[k] =
-        v.v && v.rev ? `${v.v} (${v.rev})` : v.rev || v.v || "";
-    }
-
-    return {
-      ver,
-      browsers: formattedBrowsers,
-      date,
-      links: generateLinks(rawBrowsers, ver),
-      stabilityScore: getVersionPriority(ver),
-    };
-  };
-
-  for (let i = 0; i < versionKeys.length; i += CONCURRENCY_LIMIT) {
-    const chunk = versionKeys.slice(i, i + CONCURRENCY_LIMIT);
-    const chunkResults = await Promise.all(chunk.map(processVersion));
-    results.push(...chunkResults);
-    console.log(`Progress: ${results.length}/${versionKeys.length}`);
-  }
-
-  await fs.writeFile(
-    "../playwright_versions.json",
-    JSON.stringify(results, null, 2),
-  );
-  const baseContent = `# Playwright Builds
-  
-List of all Playwright builds for Chromium, Firefox, and WebKit on Windows, Linux, and macOS. Updated daily.
-
-  `;
-
-  const engines: Record<string, Map<string, VersionData>> = {
-    chromium: new Map(),
-    firefox: new Map(),
-    webkit: new Map(),
-  };
-
-  [...results]
-    .sort((a, b) => b.stabilityScore - a.stabilityScore)
-    .forEach((r) => {
-      ["chromium", "firefox", "webkit"].forEach((e) => {
-        const key = r.browsers[e] ? normalizeVersion(r.browsers[e]) : "";
-        if (key) {
-          engines[e].set(key, r);
-        }
-      });
+[...results]
+  .sort((a, b) => b.stabilityScore - a.stabilityScore)
+  .forEach((r) => {
+    BROWSERS.forEach((e) => {
+      const key = r.browsers[e] ? normalizeVersion(r.browsers[e]) : "";
+      if (key) engines[e].set(key, r);
     });
+  });
 
-  const webkitTable = renderTable(
+const baseContent = `# Playwright Builds\n\nList of all Playwright builds for Chromium, Firefox, and WebKit on Windows, Linux, and macOS. Updated daily.\n\n`;
+const tables = [
+  renderTable(
     "Safari (WebKit)",
     engines.webkit,
     "webkit",
     "https://github.com/alrra/browser-logos/blob/main/src/safari/safari_48x48.png?raw=true",
-  );
-  const chromiumTable = renderTable(
+  ),
+  renderTable(
     "Chrome (Chromium)",
     engines.chromium,
     "chromium",
     "https://github.com/alrra/browser-logos/blob/main/src/chrome/chrome_48x48.png?raw=true",
-  );
-  const firefoxTable = renderTable(
+  ),
+  renderTable(
     "Firefox",
     engines.firefox,
     "firefox",
     "https://github.com/alrra/browser-logos/blob/main/src/firefox/firefox_48x48.png?raw=true",
-  );
+  ),
+].join("\n");
 
-  const finalContent = `${baseContent}
-${webkitTable}
-${chromiumTable}
-${firefoxTable}`;
+await fs.writeFile("../README.md", baseContent + tables);
+console.log("Successfully finished!");
 
-  await fs.writeFile("../README.md", finalContent);
-  console.log("Successfully finished!");
-} catch (err: any) {
-  console.error(err.message);
-  process.exit(1);
+async function fetchJson<T>(url: string): Promise<T | null> {
+  try {
+    const r = await fetch(url);
+    return r.ok ? await r.json() : null;
+  } catch {
+    return null;
+  }
+}
+
+async function getBrowserMetadata(ver: string) {
+  const raw: Record<BrowserName, BrowserInfo> = {
+    chromium: { v: "", rev: "" },
+    webkit: { v: "", rev: "" },
+    firefox: { v: "", rev: "" },
+  };
+
+  const bData =
+    (await fetchJson<any>(
+      `https://cdn.jsdelivr.net/npm/playwright@${ver}/browsers.json`,
+    )) ||
+    (await fetchJson<any>(
+      `https://cdn.jsdelivr.net/npm/playwright-core@${ver}/browsers.json`,
+    ));
+
+  if (bData?.browsers) {
+    for (const b of bData.browsers) {
+      const name = b.name as BrowserName;
+      if (raw[name]) {
+        raw[name].rev = String(b.revision || "");
+        raw[name].v = b.browserVersion || "";
+      }
+    }
+    return raw;
+  }
+
+  const pData =
+    (await fetchJson<any>(
+      `https://cdn.jsdelivr.net/npm/playwright-core@${ver}/package.json`,
+    )) ||
+    (await fetchJson<any>(
+      `https://cdn.jsdelivr.net/npm/playwright@${ver}/package.json`,
+    ));
+
+  if (pData?.playwright) {
+    raw.chromium.rev = String(pData.playwright.chromium_revision || "");
+    raw.firefox.rev = String(pData.playwright.firefox_revision || "");
+    raw.webkit.rev = String(pData.playwright.webkit_revision || "");
+  }
+
+  return raw;
+}
+
+async function extractReadmeBadgeVersion(
+  ver: string,
+  raw: Record<BrowserName, BrowserInfo>,
+) {
+  let resp = await fetch(`https://cdn.jsdelivr.net/npm/playwright@${ver}/README.md`);
+  if (!resp.ok) {
+    resp = await fetch(`https://cdn.jsdelivr.net/npm/playwright-core@${ver}/README.md`);
+  }
+
+  if (!resp.ok) return;
+
+  const text = await resp.text();
+
+  const badgeRegex = /img\.shields\.io\/badge\/(chromium|webkit|firefox)(?:-version)?-([^/-]+)[-.](?:blue|lightgrey|brightgreen|success|informational)/gi;
+  for (const match of text.matchAll(badgeRegex)) {
+    const name = match[1].toLowerCase() as BrowserName;
+    const version = match[2].trim();
+    updateVersionIfBetter(raw, name, version);
+  }
+
+  const genRegex = /<!-- GEN:(chromium|webkit|firefox)-version -->([^<]+)<!-- GEN:stop -->/gi;
+  for (const match of text.matchAll(genRegex)) {
+    const name = match[1].toLowerCase() as BrowserName;
+    const version = match[2].trim();
+    updateVersionIfBetter(raw, name, version);
+  }
+
+  const tableRegex = /\|\s*(Chromium|WebKit|Firefox)\s*\|\s*(?:<!--[^>]*-->)?\s*([^|]*?)\s*\|/gi;
+  for (const match of text.matchAll(tableRegex)) {
+    const name = match[1].toLowerCase() as BrowserName;
+    const version = match[2].trim();
+    updateVersionIfBetter(raw, name, version);
+  }
+}
+
+function updateVersionIfBetter(raw: Record<string, BrowserInfo>, name: BrowserName, newV: string) {
+  if (!raw[name]) return;
+
+  const cleanV = newV
+    .replace(/<!--[\s\S]*?-->/g, '') 
+    .replace(/<[^>]*>/g, '')
+    .replace(/[\s|]/g, '')
+    .trim();
+
+  if (!cleanV || cleanV === 'ver') return;
+
+  const isFullVersion = cleanV.includes('.');
+  const isCurrentFull = raw[name].v.includes('.');
+
+  if (!raw[name].v || (isFullVersion && !isCurrentFull) || cleanV.length > raw[name].v.length) {
+    raw[name].v = cleanV;
+  }
+}
+
+async function processVersion(
+  ver: string,
+  dateStr: string,
+): Promise<VersionData> {
+  const date = dateStr.split("T")[0];
+  const raw = await getBrowserMetadata(ver);
+
+  await extractReadmeBadgeVersion(ver, raw);
+
+  const formattedBrowsers: Record<string, string> = {};
+  for (const [k, v] of Object.entries(raw)) {
+    const parts = [];
+    if (v.v) parts.push(v.v);
+    if (v.rev) parts.push(v.v ? `(${v.rev})` : v.rev);
+    formattedBrowsers[k] = parts.join(" ").trim();
+  }
+
+  return {
+    ver,
+    browsers: formattedBrowsers,
+    date,
+    links: generateLinks(raw),
+    stabilityScore: getVersionPriority(ver),
+  };
 }

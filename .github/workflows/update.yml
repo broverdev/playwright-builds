@@ -40,7 +40,10 @@ jobs:
         run: npm ci --ignore-scripts --prefer-offline
 
       - name: Run playwright-updater
-        run: npm start
+        run: npm run build
+
+      - name: Validate generated links
+        run: npm run check-links ./check-links.ts
 
       - name: Commit and Push
         working-directory: .

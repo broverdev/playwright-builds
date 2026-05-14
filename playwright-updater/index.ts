@@ -136,30 +136,37 @@ async function extractReadmeBadgeVersion(
   ver: string,
   raw: Record<BrowserName, BrowserInfo>,
 ) {
-  let resp = await fetch(`https://cdn.jsdelivr.net/npm/playwright@${ver}/README.md`);
+  let resp = await fetch(
+    `https://cdn.jsdelivr.net/npm/playwright@${ver}/README.md`,
+  );
   if (!resp.ok) {
-    resp = await fetch(`https://cdn.jsdelivr.net/npm/playwright-core@${ver}/README.md`);
+    resp = await fetch(
+      `https://cdn.jsdelivr.net/npm/playwright-core@${ver}/README.md`,
+    );
   }
 
   if (!resp.ok) return;
 
   const text = await resp.text();
 
-  const badgeRegex = /img\.shields\.io\/badge\/(chromium|webkit|firefox)(?:-version)?-([^/-]+)[-.](?:blue|lightgrey|brightgreen|success|informational)/gi;
+  const badgeRegex =
+    /img\.shields\.io\/badge\/(chromium|webkit|firefox)(?:-version)?-([^/-]+)[-.](?:blue|lightgrey|brightgreen|success|informational)/gi;
   for (const match of text.matchAll(badgeRegex)) {
     const name = match[1].toLowerCase() as BrowserName;
     const version = match[2].trim();
     updateVersionIfBetter(raw, name, version);
   }
 
-  const genRegex = /<!-- GEN:(chromium|webkit|firefox)-version -->([^<]+)<!-- GEN:stop -->/gi;
+  const genRegex =
+    /<!-- GEN:(chromium|webkit|firefox)-version -->([^<]+)<!-- GEN:stop -->/gi;
   for (const match of text.matchAll(genRegex)) {
     const name = match[1].toLowerCase() as BrowserName;
     const version = match[2].trim();
     updateVersionIfBetter(raw, name, version);
   }
 
-  const tableRegex = /\|\s*(Chromium|WebKit|Firefox)\s*\|\s*(?:<!--[^>]*-->)?\s*([^|]*?)\s*\|/gi;
+  const tableRegex =
+    /\|\s*(Chromium|WebKit|Firefox)\s*\|\s*(?:<!--[^>]*-->)?\s*([^|]*?)\s*\|/gi;
   for (const match of text.matchAll(tableRegex)) {
     const name = match[1].toLowerCase() as BrowserName;
     const version = match[2].trim();
@@ -167,21 +174,29 @@ async function extractReadmeBadgeVersion(
   }
 }
 
-function updateVersionIfBetter(raw: Record<string, BrowserInfo>, name: BrowserName, newV: string) {
+function updateVersionIfBetter(
+  raw: Record<string, BrowserInfo>,
+  name: BrowserName,
+  newV: string,
+) {
   if (!raw[name]) return;
 
   const cleanV = newV
-    .replace(/<!--[\s\S]*?-->/g, '') 
-    .replace(/<[^>]*>/g, '')
-    .replace(/[\s|]/g, '')
+    .replace(/<!--[\s\S]*?-->/g, "")
+    .replace(/<[^>]*>/g, "")
+    .replace(/[\s|]/g, "")
     .trim();
 
-  if (!cleanV || cleanV === 'ver') return;
+  if (!cleanV || cleanV === "ver") return;
 
-  const isFullVersion = cleanV.includes('.');
-  const isCurrentFull = raw[name].v.includes('.');
+  const isFullVersion = cleanV.includes(".");
+  const isCurrentFull = raw[name].v.includes(".");
 
-  if (!raw[name].v || (isFullVersion && !isCurrentFull) || cleanV.length > raw[name].v.length) {
+  if (
+    !raw[name].v ||
+    (isFullVersion && !isCurrentFull) ||
+    cleanV.length > raw[name].v.length
+  ) {
     raw[name].v = cleanV;
   }
 }

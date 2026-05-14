@@ -2,7 +2,8 @@
   "name": "playwright-updater",
   "type": "module",
   "scripts": {
-    "start": "node ./index.ts",
+    "build": "node ./index.ts",
+    "check-links": "node ./check-links.ts",
     "test": "node --test tests/*.test.ts"
   },
   "devDependencies": {

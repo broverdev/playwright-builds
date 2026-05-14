@@ -19,6 +19,9 @@ const BROKEN_BUILD_URLS = [
   "https://cdn.playwright.dev/builds/cft/115.0.5790.40/win64/chrome-win64.zip",
   "https://cdn.playwright.dev/builds/cft/115.0.5790.40/linux64/chrome-linux64.zip",
   "https://cdn.playwright.dev/builds/cft/115.0.5790.32/mac-arm64/chrome-mac-arm64.zip",
+  "https://cdn.playwright.dev/builds/cft/115.0.5790.32/linux64/chrome-linux64.zip",
+  "https://cdn.playwright.dev/builds/cft/115.0.5790.32/win64/chrome-win64.zip",
+  "https://cdn.playwright.dev/builds/cft/115.0.5790.32/mac-x64/chrome-mac-x64.zip",
 ];
 
 export function generateLinks(
@@ -106,7 +109,7 @@ export function generateLinks(
       if (r >= 1244) {
         addUrl("ubuntu_20", buildUrl("firefox-ubuntu-20.04.zip"));
       }
-      if (r >= 1154 && r <= 1437) {
+      if (r >= 1154 && r <= 1365) {
         addUrl("ubuntu_18", buildUrl("firefox-ubuntu-18.04.zip"));
       }
       if (r >= 1016 && r <= 1139) {

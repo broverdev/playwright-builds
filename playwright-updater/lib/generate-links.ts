@@ -1,70 +1,116 @@
-export function generateLinks(browsers: any, playwrightVersion: string) {
-  const host = "https://cdn.playwright.dev";
-  const azurePath = "dbazure/download/playwright";
-  const [major, minor] = (playwrightVersion || "0.0").split(".").map(Number);
+import { isVersionAtLeast } from "./versions.ts";
 
-  const baseUrlPrefix =
-    major < 1 || (major === 1 && minor < 40) ? host : `${host}/${azurePath}`;
+export function generateLinks(
+  browsers: Record<string, { rev?: string; v?: string }>,
+  version: string,
+) {
+  const base = isVersionAtLeast(version, "1.40")
+    ? "https://cdn.playwright.dev/dbazure/download/playwright"
+    : "https://cdn.playwright.dev";
 
-  const urls: any = {};
+  const urls: Record<string, Record<string, string>> = {};
 
-  for (const [name, data] of Object.entries(browsers)) {
-    const b = data as any;
-    if (!b.rev) continue;
+  for (const [name, { rev, v }] of Object.entries(browsers)) {
+    if (!rev) {
+      continue;
+    }
 
-    const getRegUrl = (browser: string, archive: string) =>
-      `${baseUrlPrefix}/builds/${browser}/${b.rev}/${archive}`;
+    const r = parseInt(rev, 10) || 0;
+    const buildUrl = (file: string) => `${base}/builds/${name}/${rev}/${file}`;
+    const res: Record<string, string> = {};
 
-    switch (name) {
-      case "chromium": {
-        const chromeMajor = parseInt(b.v?.split(".")[0]) || 0;
-        if (chromeMajor >= 115) {
-          const cft = (os: string, arch: string) =>
-            `${host}/builds/cft/${b.v}/${os}-${arch}/chrome-${os}-${arch}.zip`;
+    if (name === "chromium") {
+      const chromeMajor = v ? parseInt(v?.split(".")[0]) : 0;
+      if (chromeMajor >= 115) {
+        const cft = (platform: string) =>
+          `https://cdn.playwright.dev/builds/cft/${v}/${platform}/chrome-${platform}.zip`;
 
-          urls[name] = {
-            win: cft("win64", "win64"),
-            linux: cft("linux64", "linux64"),
-            mac: cft("mac", "x64"),
-            mac_arm: cft("mac", "arm64"),
-          };
-        } else {
-          urls[name] = {
-            win: getRegUrl("chromium", "chromium-win64.zip"),
-            linux: getRegUrl("chromium", "chromium-linux.zip"),
-            mac: getRegUrl("chromium", "chromium-mac.zip"),
-          };
+        res.win = cft("win64");
+        res.linux = cft("linux64");
+        res.mac = cft("mac-x64");
+        res.mac_arm = cft("mac-arm64");
+      } else {
+        res.win = buildUrl("chromium-win64.zip");
+        res.mac = buildUrl("chromium-mac.zip");
+        res.linux = buildUrl("chromium-linux.zip");
+
+        if (r >= 833159) {
+          res.mac_arm = buildUrl("chromium-mac-arm64.zip");
         }
-        break;
-      }
-
-      case "webkit": {
-        const macName = minor >= 50 ? "mac" : minor >= 24 ? "mac-12" : "mac";
-        const linuxArchive =
-          minor >= 56 ? "webkit-ubuntu-24.04.zip" : "webkit-ubuntu-22.04.zip";
-
-        urls[name] = {
-          win: getRegUrl("webkit", "webkit-win64.zip"),
-          linux: getRegUrl("webkit", linuxArchive),
-          mac: getRegUrl("webkit", `webkit-${macName}.zip`),
-          mac_arm: getRegUrl("webkit", `webkit-mac-11-arm64.zip`),
-        };
-        break;
-      }
-
-      case "firefox": {
-        const linuxArchive =
-          minor >= 50 ? "firefox-ubuntu-24.04.zip" : "firefox-ubuntu-22.04.zip";
-
-        urls[name] = {
-          win: getRegUrl("firefox", "firefox-win64.zip"),
-          linux: getRegUrl("firefox", linuxArchive),
-          mac: getRegUrl("firefox", "firefox-mac.zip"),
-          mac_arm: getRegUrl("firefox", "firefox-mac-11-arm64.zip"),
-        };
-        break;
+        if (r >= 939194) {
+          res.linux_arm = buildUrl("chromium-linux-arm64.zip");
+        }
       }
     }
+
+    if (name === "firefox") {
+      res.win = buildUrl("firefox-win64.zip");
+      res.mac = buildUrl("firefox-mac.zip");
+
+      if (r >= 1449) {
+        res.mac_arm = buildUrl("firefox-mac-arm64.zip");
+        res.ubuntu_24 = buildUrl("firefox-ubuntu-24.04.zip");
+        res.ubuntu_24_arm = buildUrl("firefox-ubuntu-24.04-arm64.zip");
+      }
+      if (r >= 1325) {
+        res.ubuntu_22 = buildUrl("firefox-ubuntu-22.04.zip");
+      }
+      if (r >= 1244) {
+        res.ubuntu_20 = buildUrl("firefox-ubuntu-20.04.zip");
+      } else {
+        res.ubuntu_18 = buildUrl("firefox-ubuntu-18.04.zip");
+      }
+      if (r >= 1500) {
+        res.debian_11 = buildUrl("firefox-debian-11.zip");
+        res.debian_12 = buildUrl("firefox-debian-12.zip");
+      }
+      if (r >= 1412) {
+        res.mac_13 = buildUrl("firefox-mac-13.zip");
+      }
+    }
+
+    if (name === "webkit") {
+      res.win = buildUrl("webkit-win64.zip");
+
+      if (r >= 2008) {
+        res.ubuntu_24 = buildUrl("webkit-ubuntu-24.04.zip");
+        res.linux_arm = buildUrl("webkit-ubuntu-24.04-arm64.zip");
+      } else if (r >= 1659) {
+        res.ubuntu_22 = buildUrl("webkit-ubuntu-22.04.zip");
+        res.linux_arm = buildUrl("webkit-ubuntu-22.04-arm64.zip");
+      } else if (r >= 1317) {
+        res.ubuntu_20 = buildUrl("webkit-ubuntu-20.04.zip");
+        if (r >= 1574) {
+          res.linux_arm = buildUrl("webkit-ubuntu-20.04-arm64.zip");
+        }
+      } else {
+        res.ubuntu_18 = buildUrl("webkit-ubuntu-18.04.zip");
+      }
+
+      if (r >= 2228) {
+        res.debian_12 = buildUrl("webkit-debian-12.zip");
+        res.debian_13 = buildUrl("webkit-debian-13.zip");
+        res.debian_12_arm = buildUrl("webkit-debian-12-arm64.zip");
+        res.debian_13_arm = buildUrl("webkit-debian-13-arm64.zip");
+      }
+
+      if (r >= 2083) {
+        res.mac_15 = buildUrl("webkit-mac-15.zip");
+        res.mac_arm = buildUrl("webkit-mac-15-arm64.zip");
+      } else if (r >= 1991) {
+        res.mac_14 = buildUrl("webkit-mac-14.zip");
+        res.mac_arm = buildUrl("webkit-mac-14-arm64.zip");
+      } else if (r >= 1860) {
+        res.mac_13 = buildUrl("webkit-mac-13.zip");
+      } else if (r >= 1588) {
+        res.mac_12 = buildUrl("webkit-mac-12.zip");
+        res.mac_arm = buildUrl("webkit-mac-12-arm64.zip");
+      } else {
+        res.mac = buildUrl("webkit-mac-10.15.zip");
+      }
+    }
+
+    urls[name] = res;
   }
 
   return urls;

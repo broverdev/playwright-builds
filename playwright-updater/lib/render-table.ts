@@ -14,18 +14,11 @@ export function renderTable(
   const rows = sortedKeys
     .map((k) => {
       const info = data.get(k)!;
-      const labels: Record<string, string> = {
-        win64: "win",
-        linux: "linux",
-        mac: "mac",
-        mac_arm: "mac‑arm",
-      };
+      const engineLinks = info.links[engineKey] || {};
 
-      const links = info.links[engineKey]
-        ? Object.entries(info.links[engineKey])
-            .map(([p, u]) => `<a href="${u}">${labels[p] || p}</a>`)
-            .join("&nbsp;")
-        : "-";
+      const links = Object.entries(engineLinks)
+        .map(([key, url]) => `<a href="${url}" title="${key}">${key}</a>`)
+        .join("&nbsp; ");
 
       const engineVer = normalizeVersion(info.browsers[engineKey]);
       const build = info.browsers[engineKey]

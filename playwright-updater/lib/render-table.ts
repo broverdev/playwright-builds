@@ -11,7 +11,11 @@ export function renderTable(
     b.localeCompare(a, undefined, { numeric: true }),
   );
 
-  const rows = sortedKeys
+  const rows = sortedKeys.filter((k) => {
+      const info = data.get(k)!;
+      const engineLinks = info.links[engineKey] || {};
+      return Object.keys(engineLinks).length > 0;
+    })
     .map((k) => {
       const info = data.get(k)!;
       const engineLinks = info.links[engineKey] || {};

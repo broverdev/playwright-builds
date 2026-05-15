@@ -61,9 +61,9 @@ export function generateLinks(
       }
       if (chromeMajor < 114 && r >= 833159) {
         addUrl("mac_arm", buildUrl("chromium-mac-arm64.zip"));
-      }
-      if (chromeMajor < 114 && r >= 799411 && r <= 1065) {
         addUrl("win", buildUrl("chromium-win64.zip"));
+      }
+      if (chromeMajor < 114 && r >= 799411) {
         addUrl("mac", buildUrl("chromium-mac.zip"));
         addUrl("linux", buildUrl("chromium-linux.zip"));
       }

@@ -118,7 +118,9 @@ export function generateLinks(
         addUrl("ubuntu_18", buildUrl("firefox-ubuntu-18.04.zip"));
       }
       if (r >= 1016 && r <= 1139) {
+        addUrl("win", buildUrl("firefox-win64.zip"));
         addUrl("mac", buildUrl("firefox-mac.zip"));
+        addUrl("linux", buildUrl("firefox-linux.zip"));
       }
     }
 

@@ -22,6 +22,9 @@ const BROKEN_BUILD_URLS = [
   "https://cdn.playwright.dev/builds/cft/115.0.5790.32/linux64/chrome-linux64.zip",
   "https://cdn.playwright.dev/builds/cft/115.0.5790.32/win64/chrome-win64.zip",
   "https://cdn.playwright.dev/builds/cft/115.0.5790.32/mac-x64/chrome-mac-x64.zip",
+  "https://storage.googleapis.com/chromium-browser-snapshots/Linux_x64/792639.1/chrome-linux.zip",
+  "https://storage.googleapis.com/chromium-browser-snapshots/Win_x64/792639.1/chrome-win.zip",
+  "https://storage.googleapis.com/chromium-browser-snapshots/Mac/792639.1/chrome-mac.zip",
 ];
 
 export function generateLinks(
@@ -67,10 +70,19 @@ export function generateLinks(
         addUrl("mac", buildUrl("chromium-mac.zip"));
         addUrl("linux", buildUrl("chromium-linux.zip"));
       }
-      if (chromeMajor < 102 && r < 799411) {
-        addUrl("win", `https://storage.googleapis.com/chromium-browser-snapshots/Win_x64/${rev}/chrome-win.zip`);
-        addUrl("mac", `https://storage.googleapis.com/chromium-browser-snapshots/Mac/${rev}/chrome-mac.zip`);
-        addUrl("linux", `https://storage.googleapis.com/chromium-browser-snapshots/Linux_x64/${rev}/chrome-linux.zip`);
+      if (chromeMajor < 102 && r < 799411 && r > 70000) {
+        addUrl(
+          "win",
+          `https://storage.googleapis.com/chromium-browser-snapshots/Win_x64/${rev}/chrome-win.zip`,
+        );
+        addUrl(
+          "mac",
+          `https://storage.googleapis.com/chromium-browser-snapshots/Mac/${rev}/chrome-mac.zip`,
+        );
+        addUrl(
+          "linux",
+          `https://storage.googleapis.com/chromium-browser-snapshots/Linux_x64/${rev}/chrome-linux.zip`,
+        );
       }
     }
 

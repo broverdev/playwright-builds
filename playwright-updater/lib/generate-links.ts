@@ -67,6 +67,11 @@ export function generateLinks(
         addUrl("mac", buildUrl("chromium-mac.zip"));
         addUrl("linux", buildUrl("chromium-linux.zip"));
       }
+      if (chromeMajor < 102 && r < 799411) {
+        addUrl("win", `https://storage.googleapis.com/chromium-browser-snapshots/Win_x64/${rev}/chrome-win.zip`);
+        addUrl("mac", `https://storage.googleapis.com/chromium-browser-snapshots/Mac/${rev}/chrome-mac.zip`);
+        addUrl("linux", `https://storage.googleapis.com/chromium-browser-snapshots/Linux_x64/${rev}/chrome-linux.zip`);
+      }
     }
 
     if (name === "firefox") {

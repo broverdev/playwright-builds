@@ -24,20 +24,22 @@ const versions = Object.keys(registry.versions)
   .reverse();
 
 console.log(`[2/4] Found ${versions.length} versions. Processing...`);
-const results: VersionData[] = [];
+const PWVersionsData: VersionData[] = [];
 
 for (let i = 0; i < versions.length; i += CONCURRENCY_LIMIT) {
   const chunk = versions.slice(i, i + CONCURRENCY_LIMIT);
   const chunkResults = await Promise.all(
     chunk.map((v) => processVersion(v, registry.time[v])),
   );
-  results.push(...chunkResults);
-  console.log(`Progress: ${results.length}/${versions.length}`);
+  PWVersionsData.push(...chunkResults);
+  console.log(`Progress: ${PWVersionsData.length}/${versions.length}`);
 }
+
+const jsonOutput = PWVersionsData.map(({ stabilityScore, ...rest }) => rest);
 
 await fs.writeFile(
   "../playwright-builds.json",
-  JSON.stringify(results, null, 2),
+  JSON.stringify(jsonOutput, null, 2),
 );
 
 const engines: Record<BrowserName, Map<string, VersionData>> = {
@@ -46,7 +48,7 @@ const engines: Record<BrowserName, Map<string, VersionData>> = {
   webkit: new Map(),
 };
 
-[...results]
+[...PWVersionsData]
   .sort((a, b) => b.stabilityScore - a.stabilityScore)
   .forEach((r) => {
     BROWSERS.forEach((e) => {

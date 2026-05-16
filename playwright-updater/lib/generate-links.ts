@@ -179,6 +179,12 @@ export function generateLinks(
       if (r >= 1317 && r < 1588) {
         addUrl("mac", buildUrl("webkit-mac-10.15.zip"));
       }
+
+      if (r < 1317) {
+        addUrl("win", buildUrl("minibrowser-win64.zip"));
+        addUrl("mac", buildUrl("minibrowser-mac-10.15.zip"));
+        addUrl("linux", buildUrl("minibrowser-gtk-wpe.zip"));
+      }
     }
 
     if (Object.keys(res).length > 0) {

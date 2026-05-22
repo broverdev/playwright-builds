@@ -155,6 +155,13 @@ Auto-updated list of Chromium, Firefox, and Safari (WebKit) binaries for all Pla
   </thead>
   <tbody>
     <tr>
+      <td><code><img src="https://github.com/alrra/browser-logos/blob/main/src/chrome/chrome_24x24.png?raw=true" width="12" height="12" alt="" />&nbsp;149.0.7827.14</code></td>
+      <td>2026-05-21</td>
+      <td align="center">1225</td>
+      <td><a href="https://www.npmjs.com/package/playwright/v/1.61.0-alpha-2026-05-21" target="_blank"><img valign="text-top" src="https://img.shields.io/badge/1.61.0--alpha-lightgrey.svg?style=flat-square" title="1.61.0-alpha-2026-05-21" alt="1.61.0-alpha-2026-05-21"></a></td>
+      <td><a href="https://cdn.playwright.dev/builds/cft/149.0.7827.14/win64/chrome-win64.zip"><code>Windows</code></a> <a href="https://cdn.playwright.dev/builds/cft/149.0.7827.14/mac-x64/chrome-mac-x64.zip"><code>Mac</code></a> <a href="https://cdn.playwright.dev/builds/cft/149.0.7827.14/mac-arm64/chrome-mac-arm64.zip"><code>Mac&nbsp;ARM</code></a> <a href="https://cdn.playwright.dev/builds/cft/149.0.7827.14/linux64/chrome-linux64.zip"><code>Linux</code></a></td>
+    </tr>
+    <tr>
       <td><code><img src="https://github.com/alrra/browser-logos/blob/main/src/chrome/chrome_24x24.png?raw=true" width="12" height="12" alt="" />&nbsp;149.0.7827.3</code></td>
       <td>2026-05-07</td>
       <td align="center">1224</td>

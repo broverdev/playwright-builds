@@ -20,6 +20,20 @@ Auto-updated list of Chromium, Firefox, and Safari (WebKit) binaries for all Pla
   </thead>
   <tbody>
     <tr>
+      <td><code><img src="https://github.com/alrra/browser-logos/blob/main/src/safari/safari_24x24.png?raw=true" width="12" height="12" alt="" />&nbsp;1273</code></td>
+      <td>2020-06-11</td>
+      <td align="center">1273</td>
+      <td><a href="https://www.npmjs.com/package/playwright/v/1.1.0-next.1591898993879" target="_blank"><img valign="text-top" src="https://img.shields.io/badge/1.1.0--next-lightgrey.svg?style=flat-square" title="1.1.0-next.1591898993879" alt="1.1.0-next.1591898993879"></a></td>
+      <td><a href="https://cdn.playwright.dev/builds/webkit/1273/minibrowser-win64.zip"><code>Windows</code></a> <a href="https://cdn.playwright.dev/builds/webkit/1273/minibrowser-mac-10.15.zip"><code>Mac</code></a> <a href="https://cdn.playwright.dev/builds/webkit/1273/minibrowser-gtk-wpe.zip"><code>Linux</code></a></td>
+    </tr>
+    <tr>
+      <td><code><img src="https://github.com/alrra/browser-logos/blob/main/src/safari/safari_24x24.png?raw=true" width="12" height="12" alt="" />&nbsp;26.5</code></td>
+      <td>2026-06-12</td>
+      <td align="center">2311</td>
+      <td><a href="https://www.npmjs.com/package/playwright/v/1.61.0-beta-1781285686000" target="_blank"><img valign="text-top" src="https://img.shields.io/badge/1.61.0--beta-lightgrey.svg?style=flat-square" title="1.61.0-beta-1781285686000" alt="1.61.0-beta-1781285686000"></a></td>
+      <td><a href="https://cdn.playwright.dev/builds/webkit/2311/webkit-win64.zip"><code>Windows</code></a> <a href="https://cdn.playwright.dev/builds/webkit/2311/webkit-mac-15-arm64.zip"><code>Mac&nbsp;ARM</code></a> <a href="https://cdn.playwright.dev/builds/webkit/2311/webkit-mac-15.zip"><code>Mac&nbsp;15</code></a> <a href="https://cdn.playwright.dev/builds/webkit/2311/webkit-ubuntu-24.04.zip"><code>Ubuntu&nbsp;24</code></a> <a href="https://cdn.playwright.dev/builds/webkit/2311/webkit-ubuntu-24.04-arm64.zip"><code>Ubuntu&nbsp;24&nbsp;ARM</code></a> <a href="https://cdn.playwright.dev/builds/webkit/2311/webkit-debian-13.zip"><code>Debian&nbsp;13</code></a> <a href="https://cdn.playwright.dev/builds/webkit/2311/webkit-debian-13-arm64.zip"><code>Debian&nbsp;13&nbsp;ARM</code></a> <a href="https://cdn.playwright.dev/builds/webkit/2311/webkit-debian-12.zip"><code>Debian&nbsp;12</code></a> <a href="https://cdn.playwright.dev/builds/webkit/2311/webkit-debian-12-arm64.zip"><code>Debian&nbsp;12&nbsp;ARM</code></a></td>
+    </tr>
+    <tr>
       <td><code><img src="https://github.com/alrra/browser-logos/blob/main/src/safari/safari_24x24.png?raw=true" width="12" height="12" alt="" />&nbsp;26.4</code></td>
       <td>2026-04-01</td>
       <td align="center">2272</td>
@@ -154,6 +168,20 @@ Auto-updated list of Chromium, Firefox, and Safari (WebKit) binaries for all Pla
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <td><code><img src="https://github.com/alrra/browser-logos/blob/main/src/chrome/chrome_24x24.png?raw=true" width="12" height="12" alt="" />&nbsp;775089</code></td>
+      <td>2020-06-11</td>
+      <td align="center">775089</td>
+      <td><a href="https://www.npmjs.com/package/playwright/v/1.1.0-next.1591898993879" target="_blank"><img valign="text-top" src="https://img.shields.io/badge/1.1.0--next-lightgrey.svg?style=flat-square" title="1.1.0-next.1591898993879" alt="1.1.0-next.1591898993879"></a></td>
+      <td><a href="https://storage.googleapis.com/chromium-browser-snapshots/Win_x64/775089/chrome-win.zip"><code>Windows</code></a> <a href="https://storage.googleapis.com/chromium-browser-snapshots/Mac/775089/chrome-mac.zip"><code>Mac</code></a> <a href="https://storage.googleapis.com/chromium-browser-snapshots/Linux_x64/775089/chrome-linux.zip"><code>Linux</code></a></td>
+    </tr>
+    <tr>
+      <td><code><img src="https://github.com/alrra/browser-logos/blob/main/src/chrome/chrome_24x24.png?raw=true" width="12" height="12" alt="" />&nbsp;149.0.7827.55</code></td>
+      <td>2026-06-12</td>
+      <td align="center">1228</td>
+      <td><a href="https://www.npmjs.com/package/playwright/v/1.61.0-beta-1781285686000" target="_blank"><img valign="text-top" src="https://img.shields.io/badge/1.61.0--beta-lightgrey.svg?style=flat-square" title="1.61.0-beta-1781285686000" alt="1.61.0-beta-1781285686000"></a></td>
+      <td><a href="https://cdn.playwright.dev/builds/cft/149.0.7827.55/win64/chrome-win64.zip"><code>Windows</code></a> <a href="https://cdn.playwright.dev/builds/cft/149.0.7827.55/mac-x64/chrome-mac-x64.zip"><code>Mac</code></a> <a href="https://cdn.playwright.dev/builds/cft/149.0.7827.55/mac-arm64/chrome-mac-arm64.zip"><code>Mac&nbsp;ARM</code></a> <a href="https://cdn.playwright.dev/builds/cft/149.0.7827.55/linux64/chrome-linux64.zip"><code>Linux</code></a></td>
+    </tr>
     <tr>
       <td><code><img src="https://github.com/alrra/browser-logos/blob/main/src/chrome/chrome_24x24.png?raw=true" width="12" height="12" alt="" />&nbsp;149.0.7827.22</code></td>
       <td>2026-05-23</td>
@@ -1634,11 +1662,18 @@ Auto-updated list of Chromium, Firefox, and Safari (WebKit) binaries for all Pla
   </thead>
   <tbody>
     <tr>
+      <td><code><img src="https://github.com/alrra/browser-logos/blob/main/src/firefox/firefox_24x24.png?raw=true" width="12" height="12" alt="" />&nbsp;1108</code></td>
+      <td>2020-06-11</td>
+      <td align="center">1108</td>
+      <td><a href="https://www.npmjs.com/package/playwright/v/1.1.0-next.1591898993879" target="_blank"><img valign="text-top" src="https://img.shields.io/badge/1.1.0--next-lightgrey.svg?style=flat-square" title="1.1.0-next.1591898993879" alt="1.1.0-next.1591898993879"></a></td>
+      <td><a href="https://cdn.playwright.dev/builds/firefox/1108/firefox-win64.zip"><code>Windows</code></a> <a href="https://cdn.playwright.dev/builds/firefox/1108/firefox-mac.zip"><code>Mac</code></a> <a href="https://cdn.playwright.dev/builds/firefox/1108/firefox-linux.zip"><code>Linux</code></a></td>
+    </tr>
+    <tr>
       <td><code><img src="https://github.com/alrra/browser-logos/blob/main/src/firefox/firefox_24x24.png?raw=true" width="12" height="12" alt="" />&nbsp;151.0</code></td>
-      <td>2026-05-27</td>
-      <td align="center">1525</td>
-      <td><a href="https://www.npmjs.com/package/playwright/v/1.61.0-alpha-2026-05-27" target="_blank"><img valign="text-top" src="https://img.shields.io/badge/1.61.0--alpha-lightgrey.svg?style=flat-square" title="1.61.0-alpha-2026-05-27" alt="1.61.0-alpha-2026-05-27"></a></td>
-      <td><a href="https://cdn.playwright.dev/builds/firefox/1525/firefox-win64.zip"><code>Windows</code></a> <a href="https://cdn.playwright.dev/builds/firefox/1525/firefox-mac.zip"><code>Mac</code></a> <a href="https://cdn.playwright.dev/builds/firefox/1525/firefox-mac-arm64.zip"><code>Mac&nbsp;ARM</code></a> <a href="https://cdn.playwright.dev/builds/firefox/1525/firefox-ubuntu-24.04.zip"><code>Ubuntu&nbsp;24</code></a> <a href="https://cdn.playwright.dev/builds/firefox/1525/firefox-ubuntu-24.04-arm64.zip"><code>Ubuntu&nbsp;24&nbsp;ARM</code></a> <a href="https://cdn.playwright.dev/builds/firefox/1525/firefox-ubuntu-22.04.zip"><code>Ubuntu&nbsp;22</code></a> <a href="https://cdn.playwright.dev/builds/firefox/1525/firefox-ubuntu-20.04.zip"><code>Ubuntu&nbsp;20</code></a> <a href="https://cdn.playwright.dev/builds/firefox/1525/firefox-debian-12.zip"><code>Debian&nbsp;13</code></a> <a href="https://cdn.playwright.dev/builds/firefox/1525/firefox-debian-12-arm64.zip"><code>Debian&nbsp;13&nbsp;ARM</code></a> <a href="https://cdn.playwright.dev/builds/firefox/1525/firefox-debian-12.zip"><code>Debian&nbsp;12</code></a> <a href="https://cdn.playwright.dev/builds/firefox/1525/firefox-debian-12-arm64.zip"><code>Debian&nbsp;12&nbsp;ARM</code></a> <a href="https://cdn.playwright.dev/builds/firefox/1525/firefox-debian-11.zip"><code>Debian&nbsp;11</code></a> <a href="https://cdn.playwright.dev/builds/firefox/1525/firefox-debian-11-arm64.zip"><code>Debian&nbsp;11&nbsp;ARM</code></a></td>
+      <td>2026-06-12</td>
+      <td align="center">1532</td>
+      <td><a href="https://www.npmjs.com/package/playwright/v/1.61.0-beta-1781285686000" target="_blank"><img valign="text-top" src="https://img.shields.io/badge/1.61.0--beta-lightgrey.svg?style=flat-square" title="1.61.0-beta-1781285686000" alt="1.61.0-beta-1781285686000"></a></td>
+      <td><a href="https://cdn.playwright.dev/builds/firefox/1532/firefox-win64.zip"><code>Windows</code></a> <a href="https://cdn.playwright.dev/builds/firefox/1532/firefox-mac.zip"><code>Mac</code></a> <a href="https://cdn.playwright.dev/builds/firefox/1532/firefox-mac-arm64.zip"><code>Mac&nbsp;ARM</code></a> <a href="https://cdn.playwright.dev/builds/firefox/1532/firefox-ubuntu-24.04.zip"><code>Ubuntu&nbsp;24</code></a> <a href="https://cdn.playwright.dev/builds/firefox/1532/firefox-ubuntu-24.04-arm64.zip"><code>Ubuntu&nbsp;24&nbsp;ARM</code></a> <a href="https://cdn.playwright.dev/builds/firefox/1532/firefox-ubuntu-22.04.zip"><code>Ubuntu&nbsp;22</code></a> <a href="https://cdn.playwright.dev/builds/firefox/1532/firefox-ubuntu-20.04.zip"><code>Ubuntu&nbsp;20</code></a> <a href="https://cdn.playwright.dev/builds/firefox/1532/firefox-debian-12.zip"><code>Debian&nbsp;13</code></a> <a href="https://cdn.playwright.dev/builds/firefox/1532/firefox-debian-12-arm64.zip"><code>Debian&nbsp;13&nbsp;ARM</code></a> <a href="https://cdn.playwright.dev/builds/firefox/1532/firefox-debian-12.zip"><code>Debian&nbsp;12</code></a> <a href="https://cdn.playwright.dev/builds/firefox/1532/firefox-debian-12-arm64.zip"><code>Debian&nbsp;12&nbsp;ARM</code></a> <a href="https://cdn.playwright.dev/builds/firefox/1532/firefox-debian-11.zip"><code>Debian&nbsp;11</code></a> <a href="https://cdn.playwright.dev/builds/firefox/1532/firefox-debian-11-arm64.zip"><code>Debian&nbsp;11&nbsp;ARM</code></a></td>
     </tr>
     <tr>
       <td><code><img src="https://github.com/alrra/browser-logos/blob/main/src/firefox/firefox_24x24.png?raw=true" width="12" height="12" alt="" />&nbsp;150.0.2</code></td>

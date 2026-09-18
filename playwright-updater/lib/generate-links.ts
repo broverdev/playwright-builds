@@ -107,10 +107,10 @@ export function generateLinks(
         addUrl("debian_12", buildUrl("firefox-debian-12.zip"));
         addUrl("debian_12_arm", buildUrl("firefox-debian-12-arm64.zip"));
       }
-      if (r >= 1369) {
+      if (r >= 1369 && r <= 1535) {
         addUrl("debian_11_arm", buildUrl("firefox-debian-11-arm64.zip"));
       }
-      if (r >= 1344) {
+      if (r >= 1344 && r <= 1535) {
         addUrl("debian_11", buildUrl("firefox-debian-11.zip"));
       }
       if (r >= 1325) {
@@ -123,7 +123,7 @@ export function generateLinks(
         addUrl("mac_11", buildUrl("firefox-mac-11.zip"));
         addUrl("mac_11_arm", buildUrl("firefox-mac-11-arm64.zip"));
       }
-      if (r >= 1244) {
+      if (r >= 1244 && r <= 1535) {
         addUrl("ubuntu_20", buildUrl("firefox-ubuntu-20.04.zip"));
       }
       if (r >= 1154 && r <= 1365) {

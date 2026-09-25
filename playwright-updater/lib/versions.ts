@@ -5,9 +5,27 @@ export function getVersionPriority(ver: string): number {
   return 3;
 }
 
-export function normalizeVersion(fullVersion: string): string {
+export function normalizeVersion(fullVersion: string, parts?: number): string {
   const match = fullVersion.match(/^([^(]+)/);
-  return match ? match[1].trim() : fullVersion;
+  const version = match ? match[1].trim() : fullVersion;
+  const split = version.split(".");
+  if (parts && split.length > parts) return split.slice(0, parts).join(".");
+  return version;
+}
+
+export function keepLatestPatch<T>(map: Map<string, T>): Map<string, T> {
+  const latest = new Map<string, string>();
+  for (const key of map.keys()) {
+    const build = normalizeVersion(key, 3);
+    const current = latest.get(build);
+    const isLatest =
+      !current ||
+      key.localeCompare(current, undefined, { numeric: true }) > 0;
+    if (isLatest) latest.set(build, key);
+  }
+  return new Map(
+    [...map].filter(([key]) => latest.get(normalizeVersion(key, 3)) === key),
+  );
 }
 
 export function isVersionAtLeast(ver: string, minVer: string): boolean {

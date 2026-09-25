@@ -3,6 +3,7 @@ import { generateLinks } from "./lib/generate-links.ts";
 import {
   getVersionPriority,
   isVersionAtLeast,
+  keepLatestPatch,
   normalizeVersion,
 } from "./lib/versions.ts";
 import { renderTable } from "./lib/render-table.ts";
@@ -56,6 +57,8 @@ const engines: Record<BrowserName, Map<string, VersionData>> = {
       if (key) engines[e].set(key, r);
     });
   });
+
+engines.chromium = keepLatestPatch(engines.chromium);
 
 const baseContent = `# Playwright Builds
 

@@ -20,6 +20,13 @@ Auto-updated list of Chromium, Firefox, and Safari (WebKit) binaries for all Pla
   </thead>
   <tbody>
     <tr>
+      <td><code><img src="https://github.com/alrra/browser-logos/blob/main/src/safari/safari_24x24.png?raw=true" width="12" height="12" alt="" />&nbsp;1604</code></td>
+      <td>2022-01-31</td>
+      <td align="center">1604</td>
+      <td><a href="https://www.npmjs.com/package/playwright/v/1.19.0-alpha-jan-31-2022" target="_blank"><img valign="text-top" src="https://img.shields.io/badge/1.19.0--alpha-lightgrey.svg?style=flat-square" title="1.19.0-alpha-jan-31-2022" alt="1.19.0-alpha-jan-31-2022"></a></td>
+      <td><a href="https://cdn.playwright.dev/builds/webkit/1604/webkit-win64.zip"><code>Windows</code></a> <a href="https://cdn.playwright.dev/builds/webkit/1604/webkit-mac-12.zip"><code>Mac&nbsp;12</code></a> <a href="https://cdn.playwright.dev/builds/webkit/1604/webkit-mac-12-arm64.zip"><code>Mac&nbsp;12&nbsp;ARM</code></a> <a href="https://cdn.playwright.dev/builds/webkit/1604/webkit-ubuntu-20.04.zip"><code>Ubuntu&nbsp;20</code></a> <a href="https://cdn.playwright.dev/builds/webkit/1604/webkit-ubuntu-20.04-arm64.zip"><code>ubuntu_20_arm</code></a></td>
+    </tr>
+    <tr>
       <td><code><img src="https://github.com/alrra/browser-logos/blob/main/src/safari/safari_24x24.png?raw=true" width="12" height="12" alt="" />&nbsp;26.6</code></td>
       <td>2026-09-04</td>
       <td align="center">2359</td>
@@ -168,6 +175,13 @@ Auto-updated list of Chromium, Firefox, and Safari (WebKit) binaries for all Pla
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <td><code><img src="https://github.com/alrra/browser-logos/blob/main/src/chrome/chrome_24x24.png?raw=true" width="12" height="12" alt="" />&nbsp;960211</code></td>
+      <td>2022-01-31</td>
+      <td align="center">960211</td>
+      <td><a href="https://www.npmjs.com/package/playwright/v/1.19.0-alpha-jan-31-2022" target="_blank"><img valign="text-top" src="https://img.shields.io/badge/1.19.0--alpha-lightgrey.svg?style=flat-square" title="1.19.0-alpha-jan-31-2022" alt="1.19.0-alpha-jan-31-2022"></a></td>
+      <td><a href="https://cdn.playwright.dev/builds/chromium/960211/chromium-win64.zip"><code>Windows</code></a> <a href="https://cdn.playwright.dev/builds/chromium/960211/chromium-mac.zip"><code>Mac</code></a> <a href="https://cdn.playwright.dev/builds/chromium/960211/chromium-mac-arm64.zip"><code>Mac&nbsp;ARM</code></a> <a href="https://cdn.playwright.dev/builds/chromium/960211/chromium-linux.zip"><code>Linux</code></a> <a href="https://cdn.playwright.dev/builds/chromium/960211/chromium-linux-arm64.zip"><code>Linux&nbsp;ARM</code></a></td>
+    </tr>
     <tr>
       <td><code><img src="https://github.com/alrra/browser-logos/blob/main/src/chrome/chrome_24x24.png?raw=true" width="12" height="12" alt="" />&nbsp;155.0.8059.12</code></td>
       <td>2026-09-25</td>
@@ -1073,6 +1087,13 @@ Auto-updated list of Chromium, Firefox, and Safari (WebKit) binaries for all Pla
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <td><code><img src="https://github.com/alrra/browser-logos/blob/main/src/firefox/firefox_24x24.png?raw=true" width="12" height="12" alt="" />&nbsp;1316</code></td>
+      <td>2022-01-31</td>
+      <td align="center">1316</td>
+      <td><a href="https://www.npmjs.com/package/playwright/v/1.19.0-alpha-jan-31-2022" target="_blank"><img valign="text-top" src="https://img.shields.io/badge/1.19.0--alpha-lightgrey.svg?style=flat-square" title="1.19.0-alpha-jan-31-2022" alt="1.19.0-alpha-jan-31-2022"></a></td>
+      <td><a href="https://cdn.playwright.dev/builds/firefox/1316/firefox-win64.zip"><code>Windows</code></a> <a href="https://cdn.playwright.dev/builds/firefox/1316/firefox-mac-11.zip"><code>Mac&nbsp;11</code></a> <a href="https://cdn.playwright.dev/builds/firefox/1316/firefox-mac-11-arm64.zip"><code>Mac&nbsp;11&nbsp;ARM</code></a> <a href="https://cdn.playwright.dev/builds/firefox/1316/firefox-ubuntu-20.04.zip"><code>Ubuntu&nbsp;20</code></a> <a href="https://cdn.playwright.dev/builds/firefox/1316/firefox-ubuntu-18.04.zip"><code>Ubuntu&nbsp;18</code></a></td>
+    </tr>
     <tr>
       <td><code><img src="https://github.com/alrra/browser-logos/blob/main/src/firefox/firefox_24x24.png?raw=true" width="12" height="12" alt="" />&nbsp;156.0</code></td>
       <td>2026-09-18</td>

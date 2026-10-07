@@ -1,5 +1,333 @@
 [
   {
+    "ver": "1.64.0-beta-1791325470000",
+    "browsers": {
+      "chromium": "156.0.8078.4 (1248)",
+      "webkit": "27.2 (2370)",
+      "firefox": "157.0 (1555)"
+    },
+    "date": "2026-10-06",
+    "links": {
+      "chromium": {
+        "win": "https://cdn.playwright.dev/builds/cft/156.0.8078.4/win64/chrome-win64.zip",
+        "linux": "https://cdn.playwright.dev/builds/cft/156.0.8078.4/linux64/chrome-linux64.zip",
+        "mac": "https://cdn.playwright.dev/builds/cft/156.0.8078.4/mac-x64/chrome-mac-x64.zip",
+        "mac_arm": "https://cdn.playwright.dev/builds/cft/156.0.8078.4/mac-arm64/chrome-mac-arm64.zip"
+      },
+      "webkit": {
+        "debian_12": "https://cdn.playwright.dev/builds/webkit/2370/webkit-debian-12.zip",
+        "debian_13": "https://cdn.playwright.dev/builds/webkit/2370/webkit-debian-13.zip",
+        "debian_12_arm": "https://cdn.playwright.dev/builds/webkit/2370/webkit-debian-12-arm64.zip",
+        "debian_13_arm": "https://cdn.playwright.dev/builds/webkit/2370/webkit-debian-13-arm64.zip",
+        "mac_15": "https://cdn.playwright.dev/builds/webkit/2370/webkit-mac-15.zip",
+        "mac_arm": "https://cdn.playwright.dev/builds/webkit/2370/webkit-mac-15-arm64.zip",
+        "ubuntu_24": "https://cdn.playwright.dev/builds/webkit/2370/webkit-ubuntu-24.04.zip",
+        "ubuntu_24_arm": "https://cdn.playwright.dev/builds/webkit/2370/webkit-ubuntu-24.04-arm64.zip",
+        "win": "https://cdn.playwright.dev/builds/webkit/2370/webkit-win64.zip"
+      },
+      "firefox": {
+        "win": "https://cdn.playwright.dev/builds/firefox/1555/firefox-win64.zip",
+        "debian_13": "https://cdn.playwright.dev/builds/firefox/1555/firefox-debian-12.zip",
+        "debian_13_arm": "https://cdn.playwright.dev/builds/firefox/1555/firefox-debian-12-arm64.zip",
+        "mac": "https://cdn.playwright.dev/builds/firefox/1555/firefox-mac.zip",
+        "mac_arm": "https://cdn.playwright.dev/builds/firefox/1555/firefox-mac-arm64.zip",
+        "ubuntu_24": "https://cdn.playwright.dev/builds/firefox/1555/firefox-ubuntu-24.04.zip",
+        "ubuntu_24_arm": "https://cdn.playwright.dev/builds/firefox/1555/firefox-ubuntu-24.04-arm64.zip",
+        "debian_12": "https://cdn.playwright.dev/builds/firefox/1555/firefox-debian-12.zip",
+        "debian_12_arm": "https://cdn.playwright.dev/builds/firefox/1555/firefox-debian-12-arm64.zip",
+        "ubuntu_22": "https://cdn.playwright.dev/builds/firefox/1555/firefox-ubuntu-22.04.zip",
+        "ubuntu_20": "https://cdn.playwright.dev/builds/firefox/1555/firefox-ubuntu-22.04-arm64.zip"
+      }
+    }
+  },
+  {
+    "ver": "1.64.0-beta-1791325510000",
+    "browsers": {
+      "chromium": "156.0.8078.4 (1248)",
+      "webkit": "27.2 (2370)",
+      "firefox": "157.0 (1555)"
+    },
+    "date": "2026-10-06",
+    "links": {
+      "chromium": {
+        "win": "https://cdn.playwright.dev/builds/cft/156.0.8078.4/win64/chrome-win64.zip",
+        "linux": "https://cdn.playwright.dev/builds/cft/156.0.8078.4/linux64/chrome-linux64.zip",
+        "mac": "https://cdn.playwright.dev/builds/cft/156.0.8078.4/mac-x64/chrome-mac-x64.zip",
+        "mac_arm": "https://cdn.playwright.dev/builds/cft/156.0.8078.4/mac-arm64/chrome-mac-arm64.zip"
+      },
+      "webkit": {
+        "debian_12": "https://cdn.playwright.dev/builds/webkit/2370/webkit-debian-12.zip",
+        "debian_13": "https://cdn.playwright.dev/builds/webkit/2370/webkit-debian-13.zip",
+        "debian_12_arm": "https://cdn.playwright.dev/builds/webkit/2370/webkit-debian-12-arm64.zip",
+        "debian_13_arm": "https://cdn.playwright.dev/builds/webkit/2370/webkit-debian-13-arm64.zip",
+        "mac_15": "https://cdn.playwright.dev/builds/webkit/2370/webkit-mac-15.zip",
+        "mac_arm": "https://cdn.playwright.dev/builds/webkit/2370/webkit-mac-15-arm64.zip",
+        "ubuntu_24": "https://cdn.playwright.dev/builds/webkit/2370/webkit-ubuntu-24.04.zip",
+        "ubuntu_24_arm": "https://cdn.playwright.dev/builds/webkit/2370/webkit-ubuntu-24.04-arm64.zip",
+        "win": "https://cdn.playwright.dev/builds/webkit/2370/webkit-win64.zip"
+      },
+      "firefox": {
+        "win": "https://cdn.playwright.dev/builds/firefox/1555/firefox-win64.zip",
+        "debian_13": "https://cdn.playwright.dev/builds/firefox/1555/firefox-debian-12.zip",
+        "debian_13_arm": "https://cdn.playwright.dev/builds/firefox/1555/firefox-debian-12-arm64.zip",
+        "mac": "https://cdn.playwright.dev/builds/firefox/1555/firefox-mac.zip",
+        "mac_arm": "https://cdn.playwright.dev/builds/firefox/1555/firefox-mac-arm64.zip",
+        "ubuntu_24": "https://cdn.playwright.dev/builds/firefox/1555/firefox-ubuntu-24.04.zip",
+        "ubuntu_24_arm": "https://cdn.playwright.dev/builds/firefox/1555/firefox-ubuntu-24.04-arm64.zip",
+        "debian_12": "https://cdn.playwright.dev/builds/firefox/1555/firefox-debian-12.zip",
+        "debian_12_arm": "https://cdn.playwright.dev/builds/firefox/1555/firefox-debian-12-arm64.zip",
+        "ubuntu_22": "https://cdn.playwright.dev/builds/firefox/1555/firefox-ubuntu-22.04.zip",
+        "ubuntu_20": "https://cdn.playwright.dev/builds/firefox/1555/firefox-ubuntu-22.04-arm64.zip"
+      }
+    }
+  },
+  {
+    "ver": "1.64.0-beta-1791325413000",
+    "browsers": {
+      "chromium": "156.0.8078.4 (1248)",
+      "webkit": "27.2 (2370)",
+      "firefox": "157.0 (1555)"
+    },
+    "date": "2026-10-06",
+    "links": {
+      "chromium": {
+        "win": "https://cdn.playwright.dev/builds/cft/156.0.8078.4/win64/chrome-win64.zip",
+        "linux": "https://cdn.playwright.dev/builds/cft/156.0.8078.4/linux64/chrome-linux64.zip",
+        "mac": "https://cdn.playwright.dev/builds/cft/156.0.8078.4/mac-x64/chrome-mac-x64.zip",
+        "mac_arm": "https://cdn.playwright.dev/builds/cft/156.0.8078.4/mac-arm64/chrome-mac-arm64.zip"
+      },
+      "webkit": {
+        "debian_12": "https://cdn.playwright.dev/builds/webkit/2370/webkit-debian-12.zip",
+        "debian_13": "https://cdn.playwright.dev/builds/webkit/2370/webkit-debian-13.zip",
+        "debian_12_arm": "https://cdn.playwright.dev/builds/webkit/2370/webkit-debian-12-arm64.zip",
+        "debian_13_arm": "https://cdn.playwright.dev/builds/webkit/2370/webkit-debian-13-arm64.zip",
+        "mac_15": "https://cdn.playwright.dev/builds/webkit/2370/webkit-mac-15.zip",
+        "mac_arm": "https://cdn.playwright.dev/builds/webkit/2370/webkit-mac-15-arm64.zip",
+        "ubuntu_24": "https://cdn.playwright.dev/builds/webkit/2370/webkit-ubuntu-24.04.zip",
+        "ubuntu_24_arm": "https://cdn.playwright.dev/builds/webkit/2370/webkit-ubuntu-24.04-arm64.zip",
+        "win": "https://cdn.playwright.dev/builds/webkit/2370/webkit-win64.zip"
+      },
+      "firefox": {
+        "win": "https://cdn.playwright.dev/builds/firefox/1555/firefox-win64.zip",
+        "debian_13": "https://cdn.playwright.dev/builds/firefox/1555/firefox-debian-12.zip",
+        "debian_13_arm": "https://cdn.playwright.dev/builds/firefox/1555/firefox-debian-12-arm64.zip",
+        "mac": "https://cdn.playwright.dev/builds/firefox/1555/firefox-mac.zip",
+        "mac_arm": "https://cdn.playwright.dev/builds/firefox/1555/firefox-mac-arm64.zip",
+        "ubuntu_24": "https://cdn.playwright.dev/builds/firefox/1555/firefox-ubuntu-24.04.zip",
+        "ubuntu_24_arm": "https://cdn.playwright.dev/builds/firefox/1555/firefox-ubuntu-24.04-arm64.zip",
+        "debian_12": "https://cdn.playwright.dev/builds/firefox/1555/firefox-debian-12.zip",
+        "debian_12_arm": "https://cdn.playwright.dev/builds/firefox/1555/firefox-debian-12-arm64.zip",
+        "ubuntu_22": "https://cdn.playwright.dev/builds/firefox/1555/firefox-ubuntu-22.04.zip",
+        "ubuntu_20": "https://cdn.playwright.dev/builds/firefox/1555/firefox-ubuntu-22.04-arm64.zip"
+      }
+    }
+  },
+  {
+    "ver": "1.64.0-beta-1791317373000",
+    "browsers": {
+      "chromium": "156.0.8078.4 (1248)",
+      "webkit": "27.2 (2370)",
+      "firefox": "157.0 (1555)"
+    },
+    "date": "2026-10-06",
+    "links": {
+      "chromium": {
+        "win": "https://cdn.playwright.dev/builds/cft/156.0.8078.4/win64/chrome-win64.zip",
+        "linux": "https://cdn.playwright.dev/builds/cft/156.0.8078.4/linux64/chrome-linux64.zip",
+        "mac": "https://cdn.playwright.dev/builds/cft/156.0.8078.4/mac-x64/chrome-mac-x64.zip",
+        "mac_arm": "https://cdn.playwright.dev/builds/cft/156.0.8078.4/mac-arm64/chrome-mac-arm64.zip"
+      },
+      "webkit": {
+        "debian_12": "https://cdn.playwright.dev/builds/webkit/2370/webkit-debian-12.zip",
+        "debian_13": "https://cdn.playwright.dev/builds/webkit/2370/webkit-debian-13.zip",
+        "debian_12_arm": "https://cdn.playwright.dev/builds/webkit/2370/webkit-debian-12-arm64.zip",
+        "debian_13_arm": "https://cdn.playwright.dev/builds/webkit/2370/webkit-debian-13-arm64.zip",
+        "mac_15": "https://cdn.playwright.dev/builds/webkit/2370/webkit-mac-15.zip",
+        "mac_arm": "https://cdn.playwright.dev/builds/webkit/2370/webkit-mac-15-arm64.zip",
+        "ubuntu_24": "https://cdn.playwright.dev/builds/webkit/2370/webkit-ubuntu-24.04.zip",
+        "ubuntu_24_arm": "https://cdn.playwright.dev/builds/webkit/2370/webkit-ubuntu-24.04-arm64.zip",
+        "win": "https://cdn.playwright.dev/builds/webkit/2370/webkit-win64.zip"
+      },
+      "firefox": {
+        "win": "https://cdn.playwright.dev/builds/firefox/1555/firefox-win64.zip",
+        "debian_13": "https://cdn.playwright.dev/builds/firefox/1555/firefox-debian-12.zip",
+        "debian_13_arm": "https://cdn.playwright.dev/builds/firefox/1555/firefox-debian-12-arm64.zip",
+        "mac": "https://cdn.playwright.dev/builds/firefox/1555/firefox-mac.zip",
+        "mac_arm": "https://cdn.playwright.dev/builds/firefox/1555/firefox-mac-arm64.zip",
+        "ubuntu_24": "https://cdn.playwright.dev/builds/firefox/1555/firefox-ubuntu-24.04.zip",
+        "ubuntu_24_arm": "https://cdn.playwright.dev/builds/firefox/1555/firefox-ubuntu-24.04-arm64.zip",
+        "debian_12": "https://cdn.playwright.dev/builds/firefox/1555/firefox-debian-12.zip",
+        "debian_12_arm": "https://cdn.playwright.dev/builds/firefox/1555/firefox-debian-12-arm64.zip",
+        "ubuntu_22": "https://cdn.playwright.dev/builds/firefox/1555/firefox-ubuntu-22.04.zip",
+        "ubuntu_20": "https://cdn.playwright.dev/builds/firefox/1555/firefox-ubuntu-22.04-arm64.zip"
+      }
+    }
+  },
+  {
+    "ver": "1.64.0-beta-1791313789000",
+    "browsers": {
+      "chromium": "156.0.8078.4 (1248)",
+      "webkit": "27.2 (2370)",
+      "firefox": "157.0 (1555)"
+    },
+    "date": "2026-10-06",
+    "links": {
+      "chromium": {
+        "win": "https://cdn.playwright.dev/builds/cft/156.0.8078.4/win64/chrome-win64.zip",
+        "linux": "https://cdn.playwright.dev/builds/cft/156.0.8078.4/linux64/chrome-linux64.zip",
+        "mac": "https://cdn.playwright.dev/builds/cft/156.0.8078.4/mac-x64/chrome-mac-x64.zip",
+        "mac_arm": "https://cdn.playwright.dev/builds/cft/156.0.8078.4/mac-arm64/chrome-mac-arm64.zip"
+      },
+      "webkit": {
+        "debian_12": "https://cdn.playwright.dev/builds/webkit/2370/webkit-debian-12.zip",
+        "debian_13": "https://cdn.playwright.dev/builds/webkit/2370/webkit-debian-13.zip",
+        "debian_12_arm": "https://cdn.playwright.dev/builds/webkit/2370/webkit-debian-12-arm64.zip",
+        "debian_13_arm": "https://cdn.playwright.dev/builds/webkit/2370/webkit-debian-13-arm64.zip",
+        "mac_15": "https://cdn.playwright.dev/builds/webkit/2370/webkit-mac-15.zip",
+        "mac_arm": "https://cdn.playwright.dev/builds/webkit/2370/webkit-mac-15-arm64.zip",
+        "ubuntu_24": "https://cdn.playwright.dev/builds/webkit/2370/webkit-ubuntu-24.04.zip",
+        "ubuntu_24_arm": "https://cdn.playwright.dev/builds/webkit/2370/webkit-ubuntu-24.04-arm64.zip",
+        "win": "https://cdn.playwright.dev/builds/webkit/2370/webkit-win64.zip"
+      },
+      "firefox": {
+        "win": "https://cdn.playwright.dev/builds/firefox/1555/firefox-win64.zip",
+        "debian_13": "https://cdn.playwright.dev/builds/firefox/1555/firefox-debian-12.zip",
+        "debian_13_arm": "https://cdn.playwright.dev/builds/firefox/1555/firefox-debian-12-arm64.zip",
+        "mac": "https://cdn.playwright.dev/builds/firefox/1555/firefox-mac.zip",
+        "mac_arm": "https://cdn.playwright.dev/builds/firefox/1555/firefox-mac-arm64.zip",
+        "ubuntu_24": "https://cdn.playwright.dev/builds/firefox/1555/firefox-ubuntu-24.04.zip",
+        "ubuntu_24_arm": "https://cdn.playwright.dev/builds/firefox/1555/firefox-ubuntu-24.04-arm64.zip",
+        "debian_12": "https://cdn.playwright.dev/builds/firefox/1555/firefox-debian-12.zip",
+        "debian_12_arm": "https://cdn.playwright.dev/builds/firefox/1555/firefox-debian-12-arm64.zip",
+        "ubuntu_22": "https://cdn.playwright.dev/builds/firefox/1555/firefox-ubuntu-22.04.zip",
+        "ubuntu_20": "https://cdn.playwright.dev/builds/firefox/1555/firefox-ubuntu-22.04-arm64.zip"
+      }
+    }
+  },
+  {
+    "ver": "1.64.0-beta-1791313189000",
+    "browsers": {
+      "chromium": "156.0.8078.4 (1248)",
+      "webkit": "27.2 (2370)",
+      "firefox": "157.0 (1555)"
+    },
+    "date": "2026-10-06",
+    "links": {
+      "chromium": {
+        "win": "https://cdn.playwright.dev/builds/cft/156.0.8078.4/win64/chrome-win64.zip",
+        "linux": "https://cdn.playwright.dev/builds/cft/156.0.8078.4/linux64/chrome-linux64.zip",
+        "mac": "https://cdn.playwright.dev/builds/cft/156.0.8078.4/mac-x64/chrome-mac-x64.zip",
+        "mac_arm": "https://cdn.playwright.dev/builds/cft/156.0.8078.4/mac-arm64/chrome-mac-arm64.zip"
+      },
+      "webkit": {
+        "debian_12": "https://cdn.playwright.dev/builds/webkit/2370/webkit-debian-12.zip",
+        "debian_13": "https://cdn.playwright.dev/builds/webkit/2370/webkit-debian-13.zip",
+        "debian_12_arm": "https://cdn.playwright.dev/builds/webkit/2370/webkit-debian-12-arm64.zip",
+        "debian_13_arm": "https://cdn.playwright.dev/builds/webkit/2370/webkit-debian-13-arm64.zip",
+        "mac_15": "https://cdn.playwright.dev/builds/webkit/2370/webkit-mac-15.zip",
+        "mac_arm": "https://cdn.playwright.dev/builds/webkit/2370/webkit-mac-15-arm64.zip",
+        "ubuntu_24": "https://cdn.playwright.dev/builds/webkit/2370/webkit-ubuntu-24.04.zip",
+        "ubuntu_24_arm": "https://cdn.playwright.dev/builds/webkit/2370/webkit-ubuntu-24.04-arm64.zip",
+        "win": "https://cdn.playwright.dev/builds/webkit/2370/webkit-win64.zip"
+      },
+      "firefox": {
+        "win": "https://cdn.playwright.dev/builds/firefox/1555/firefox-win64.zip",
+        "debian_13": "https://cdn.playwright.dev/builds/firefox/1555/firefox-debian-12.zip",
+        "debian_13_arm": "https://cdn.playwright.dev/builds/firefox/1555/firefox-debian-12-arm64.zip",
+        "mac": "https://cdn.playwright.dev/builds/firefox/1555/firefox-mac.zip",
+        "mac_arm": "https://cdn.playwright.dev/builds/firefox/1555/firefox-mac-arm64.zip",
+        "ubuntu_24": "https://cdn.playwright.dev/builds/firefox/1555/firefox-ubuntu-24.04.zip",
+        "ubuntu_24_arm": "https://cdn.playwright.dev/builds/firefox/1555/firefox-ubuntu-24.04-arm64.zip",
+        "debian_12": "https://cdn.playwright.dev/builds/firefox/1555/firefox-debian-12.zip",
+        "debian_12_arm": "https://cdn.playwright.dev/builds/firefox/1555/firefox-debian-12-arm64.zip",
+        "ubuntu_22": "https://cdn.playwright.dev/builds/firefox/1555/firefox-ubuntu-22.04.zip",
+        "ubuntu_20": "https://cdn.playwright.dev/builds/firefox/1555/firefox-ubuntu-22.04-arm64.zip"
+      }
+    }
+  },
+  {
+    "ver": "1.64.0-beta-1791301756000",
+    "browsers": {
+      "chromium": "156.0.8078.4 (1248)",
+      "webkit": "27.2 (2370)",
+      "firefox": "157.0 (1555)"
+    },
+    "date": "2026-10-06",
+    "links": {
+      "chromium": {
+        "win": "https://cdn.playwright.dev/builds/cft/156.0.8078.4/win64/chrome-win64.zip",
+        "linux": "https://cdn.playwright.dev/builds/cft/156.0.8078.4/linux64/chrome-linux64.zip",
+        "mac": "https://cdn.playwright.dev/builds/cft/156.0.8078.4/mac-x64/chrome-mac-x64.zip",
+        "mac_arm": "https://cdn.playwright.dev/builds/cft/156.0.8078.4/mac-arm64/chrome-mac-arm64.zip"
+      },
+      "webkit": {
+        "debian_12": "https://cdn.playwright.dev/builds/webkit/2370/webkit-debian-12.zip",
+        "debian_13": "https://cdn.playwright.dev/builds/webkit/2370/webkit-debian-13.zip",
+        "debian_12_arm": "https://cdn.playwright.dev/builds/webkit/2370/webkit-debian-12-arm64.zip",
+        "debian_13_arm": "https://cdn.playwright.dev/builds/webkit/2370/webkit-debian-13-arm64.zip",
+        "mac_15": "https://cdn.playwright.dev/builds/webkit/2370/webkit-mac-15.zip",
+        "mac_arm": "https://cdn.playwright.dev/builds/webkit/2370/webkit-mac-15-arm64.zip",
+        "ubuntu_24": "https://cdn.playwright.dev/builds/webkit/2370/webkit-ubuntu-24.04.zip",
+        "ubuntu_24_arm": "https://cdn.playwright.dev/builds/webkit/2370/webkit-ubuntu-24.04-arm64.zip",
+        "win": "https://cdn.playwright.dev/builds/webkit/2370/webkit-win64.zip"
+      },
+      "firefox": {
+        "win": "https://cdn.playwright.dev/builds/firefox/1555/firefox-win64.zip",
+        "debian_13": "https://cdn.playwright.dev/builds/firefox/1555/firefox-debian-12.zip",
+        "debian_13_arm": "https://cdn.playwright.dev/builds/firefox/1555/firefox-debian-12-arm64.zip",
+        "mac": "https://cdn.playwright.dev/builds/firefox/1555/firefox-mac.zip",
+        "mac_arm": "https://cdn.playwright.dev/builds/firefox/1555/firefox-mac-arm64.zip",
+        "ubuntu_24": "https://cdn.playwright.dev/builds/firefox/1555/firefox-ubuntu-24.04.zip",
+        "ubuntu_24_arm": "https://cdn.playwright.dev/builds/firefox/1555/firefox-ubuntu-24.04-arm64.zip",
+        "debian_12": "https://cdn.playwright.dev/builds/firefox/1555/firefox-debian-12.zip",
+        "debian_12_arm": "https://cdn.playwright.dev/builds/firefox/1555/firefox-debian-12-arm64.zip",
+        "ubuntu_22": "https://cdn.playwright.dev/builds/firefox/1555/firefox-ubuntu-22.04.zip",
+        "ubuntu_20": "https://cdn.playwright.dev/builds/firefox/1555/firefox-ubuntu-22.04-arm64.zip"
+      }
+    }
+  },
+  {
+    "ver": "1.64.0-alpha-2026-10-06",
+    "browsers": {
+      "chromium": "156.0.8078.4 (1248)",
+      "webkit": "27.2 (2370)",
+      "firefox": "157.0 (1555)"
+    },
+    "date": "2026-10-06",
+    "links": {
+      "chromium": {
+        "win": "https://cdn.playwright.dev/builds/cft/156.0.8078.4/win64/chrome-win64.zip",
+        "linux": "https://cdn.playwright.dev/builds/cft/156.0.8078.4/linux64/chrome-linux64.zip",
+        "mac": "https://cdn.playwright.dev/builds/cft/156.0.8078.4/mac-x64/chrome-mac-x64.zip",
+        "mac_arm": "https://cdn.playwright.dev/builds/cft/156.0.8078.4/mac-arm64/chrome-mac-arm64.zip"
+      },
+      "webkit": {
+        "debian_12": "https://cdn.playwright.dev/builds/webkit/2370/webkit-debian-12.zip",
+        "debian_13": "https://cdn.playwright.dev/builds/webkit/2370/webkit-debian-13.zip",
+        "debian_12_arm": "https://cdn.playwright.dev/builds/webkit/2370/webkit-debian-12-arm64.zip",
+        "debian_13_arm": "https://cdn.playwright.dev/builds/webkit/2370/webkit-debian-13-arm64.zip",
+        "mac_15": "https://cdn.playwright.dev/builds/webkit/2370/webkit-mac-15.zip",
+        "mac_arm": "https://cdn.playwright.dev/builds/webkit/2370/webkit-mac-15-arm64.zip",
+        "ubuntu_24": "https://cdn.playwright.dev/builds/webkit/2370/webkit-ubuntu-24.04.zip",
+        "ubuntu_24_arm": "https://cdn.playwright.dev/builds/webkit/2370/webkit-ubuntu-24.04-arm64.zip",
+        "win": "https://cdn.playwright.dev/builds/webkit/2370/webkit-win64.zip"
+      },
+      "firefox": {
+        "win": "https://cdn.playwright.dev/builds/firefox/1555/firefox-win64.zip",
+        "debian_13": "https://cdn.playwright.dev/builds/firefox/1555/firefox-debian-12.zip",
+        "debian_13_arm": "https://cdn.playwright.dev/builds/firefox/1555/firefox-debian-12-arm64.zip",
+        "mac": "https://cdn.playwright.dev/builds/firefox/1555/firefox-mac.zip",
+        "mac_arm": "https://cdn.playwright.dev/builds/firefox/1555/firefox-mac-arm64.zip",
+        "ubuntu_24": "https://cdn.playwright.dev/builds/firefox/1555/firefox-ubuntu-24.04.zip",
+        "ubuntu_24_arm": "https://cdn.playwright.dev/builds/firefox/1555/firefox-ubuntu-24.04-arm64.zip",
+        "debian_12": "https://cdn.playwright.dev/builds/firefox/1555/firefox-debian-12.zip",
+        "debian_12_arm": "https://cdn.playwright.dev/builds/firefox/1555/firefox-debian-12-arm64.zip",
+        "ubuntu_22": "https://cdn.playwright.dev/builds/firefox/1555/firefox-ubuntu-22.04.zip",
+        "ubuntu_20": "https://cdn.playwright.dev/builds/firefox/1555/firefox-ubuntu-22.04-arm64.zip"
+      }
+    }
+  },
+  {
     "ver": "1.64.0-alpha-2026-10-05",
     "browsers": {
       "chromium": "156.0.8078.4 (1248)",
@@ -87969,12 +88297,29 @@
   {
     "ver": "1.26.0-alpha-aug-21-2022",
     "browsers": {
-      "chromium": "105.0.5195.37",
-      "webkit": "16.0",
-      "firefox": "103.0"
+      "chromium": "105.0.5195.37 (1021)",
+      "webkit": "16.0 (1707)",
+      "firefox": "103.0 (1345)"
     },
     "date": "2022-08-21",
-    "links": {}
+    "links": {
+      "webkit": {
+        "ubuntu_22": "https://cdn.playwright.dev/builds/webkit/1707/webkit-ubuntu-22.04.zip",
+        "ubuntu_22_arm": "https://cdn.playwright.dev/builds/webkit/1707/webkit-ubuntu-22.04-arm64.zip",
+        "mac_12": "https://cdn.playwright.dev/builds/webkit/1707/webkit-mac-12.zip",
+        "mac_12_arm": "https://cdn.playwright.dev/builds/webkit/1707/webkit-mac-12-arm64.zip",
+        "win": "https://cdn.playwright.dev/builds/webkit/1707/webkit-win64.zip"
+      },
+      "firefox": {
+        "win": "https://cdn.playwright.dev/builds/firefox/1345/firefox-win64.zip",
+        "debian_11": "https://cdn.playwright.dev/builds/firefox/1345/firefox-debian-11.zip",
+        "ubuntu_22": "https://cdn.playwright.dev/builds/firefox/1345/firefox-ubuntu-22.04.zip",
+        "ubuntu_20": "https://cdn.playwright.dev/builds/firefox/1345/firefox-ubuntu-20.04.zip",
+        "mac_11": "https://cdn.playwright.dev/builds/firefox/1345/firefox-mac-11.zip",
+        "mac_11_arm": "https://cdn.playwright.dev/builds/firefox/1345/firefox-mac-11-arm64.zip",
+        "ubuntu_18": "https://cdn.playwright.dev/builds/firefox/1345/firefox-ubuntu-18.04.zip"
+      }
+    }
   },
   {
     "ver": "1.25.0-beta-1660977861000",
@@ -89913,12 +90258,28 @@
   {
     "ver": "1.24.0-beta-1658439162000",
     "browsers": {
-      "chromium": "104.0.5112.48",
-      "webkit": "16.0",
-      "firefox": "102.0"
+      "chromium": "104.0.5112.48 (1015)",
+      "webkit": "16.0 (1683)",
+      "firefox": "102.0 (1335)"
     },
     "date": "2022-07-21",
-    "links": {}
+    "links": {
+      "webkit": {
+        "ubuntu_22": "https://cdn.playwright.dev/builds/webkit/1683/webkit-ubuntu-22.04.zip",
+        "ubuntu_22_arm": "https://cdn.playwright.dev/builds/webkit/1683/webkit-ubuntu-22.04-arm64.zip",
+        "mac_12": "https://cdn.playwright.dev/builds/webkit/1683/webkit-mac-12.zip",
+        "mac_12_arm": "https://cdn.playwright.dev/builds/webkit/1683/webkit-mac-12-arm64.zip",
+        "win": "https://cdn.playwright.dev/builds/webkit/1683/webkit-win64.zip"
+      },
+      "firefox": {
+        "win": "https://cdn.playwright.dev/builds/firefox/1335/firefox-win64.zip",
+        "ubuntu_22": "https://cdn.playwright.dev/builds/firefox/1335/firefox-ubuntu-22.04.zip",
+        "ubuntu_20": "https://cdn.playwright.dev/builds/firefox/1335/firefox-ubuntu-20.04.zip",
+        "mac_11": "https://cdn.playwright.dev/builds/firefox/1335/firefox-mac-11.zip",
+        "mac_11_arm": "https://cdn.playwright.dev/builds/firefox/1335/firefox-mac-11-arm64.zip",
+        "ubuntu_18": "https://cdn.playwright.dev/builds/firefox/1335/firefox-ubuntu-18.04.zip"
+      }
+    }
   },
   {
     "ver": "1.25.0-alpha-jul-21-2022",

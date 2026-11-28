@@ -1109,6 +1109,13 @@ Auto-updated list of Chromium, Firefox, and Safari (WebKit) binaries for all Pla
   </thead>
   <tbody>
     <tr>
+      <td><code><img src="https://github.com/alrra/browser-logos/blob/main/src/firefox/firefox_24x24.png?raw=true" width="12" height="12" alt="" />&nbsp;160.0</code></td>
+      <td>2026-11-27</td>
+      <td align="center">1584</td>
+      <td><a href="https://www.npmjs.com/package/playwright/v/1.66.0-alpha-2026-11-27" target="_blank"><img valign="text-top" src="https://img.shields.io/badge/1.66.0--alpha-lightgrey.svg?style=flat-square" title="1.66.0-alpha-2026-11-27" alt="1.66.0-alpha-2026-11-27"></a></td>
+      <td><a href="https://cdn.playwright.dev/builds/firefox/1584/firefox-win64.zip"><code>Windows</code></a> <a href="https://cdn.playwright.dev/builds/firefox/1584/firefox-mac.zip"><code>Mac</code></a> <a href="https://cdn.playwright.dev/builds/firefox/1584/firefox-mac-arm64.zip"><code>Mac&nbsp;ARM</code></a> <a href="https://cdn.playwright.dev/builds/firefox/1584/firefox-ubuntu-24.04.zip"><code>Ubuntu&nbsp;24</code></a> <a href="https://cdn.playwright.dev/builds/firefox/1584/firefox-ubuntu-24.04-arm64.zip"><code>Ubuntu&nbsp;24&nbsp;ARM</code></a> <a href="https://cdn.playwright.dev/builds/firefox/1584/firefox-ubuntu-22.04.zip"><code>Ubuntu&nbsp;22</code></a> <a href="https://cdn.playwright.dev/builds/firefox/1584/firefox-ubuntu-22.04-arm64.zip"><code>Ubuntu&nbsp;20</code></a> <a href="https://cdn.playwright.dev/builds/firefox/1584/firefox-debian-12.zip"><code>Debian&nbsp;13</code></a> <a href="https://cdn.playwright.dev/builds/firefox/1584/firefox-debian-12-arm64.zip"><code>Debian&nbsp;13&nbsp;ARM</code></a> <a href="https://cdn.playwright.dev/builds/firefox/1584/firefox-debian-12.zip"><code>Debian&nbsp;12</code></a> <a href="https://cdn.playwright.dev/builds/firefox/1584/firefox-debian-12-arm64.zip"><code>Debian&nbsp;12&nbsp;ARM</code></a></td>
+    </tr>
+    <tr>
       <td><code><img src="https://github.com/alrra/browser-logos/blob/main/src/firefox/firefox_24x24.png?raw=true" width="12" height="12" alt="" />&nbsp;159.0</code></td>
       <td>2026-11-05</td>
       <td align="center">1572</td>
